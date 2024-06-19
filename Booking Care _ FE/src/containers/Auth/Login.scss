@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-image: url(../../assets/images/bg.jpeg);
+    height: 100vh;
+    .login-background {
+        .login-container {
+            background-color: #e5e6e9;
+            border-radius: 16px;
+            width: 430px;
+            border: #e5e6e9 1px solid;
+            height: 80vh;
+            padding: 20px;
+            .login-content {
+                width: 100%;
+                .form-group {
+                    .form-control {
+                        border-radius: 16px;
+                    }
+                    .btn-login {
+                        padding: 8px;
+                        cursor: pointer;
+                        border-radius: 16px;
+                        border: 0px;
+                        transition: 0.5s;
+                        background-size: 200% auto;
+                        background-image: linear-gradient(to right, #326bfa 0%, #40f5d7 51%, #2f61ff 100%);
+                        margin: 0px 0px 5px 0px;
+                    }
+                    .btn-login:hover {
+                        background-position: right center;
+                    }
+                    .forgot-pw {
+                        color: blue;
+                    }
+                    .login-with {
+                        margin-top: 50px;
+                    }
+                    .custom-input-password {
+                        .icon-password-hider {
+                            right: 25px;
+                            top: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                    .social-login {
+                        .facebook {
+                            font-size: 25px;
+                            background: #307aaf;
+                            border-radius: 50%;
+                            height: 45px;
+                            width: 45px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            margin: 10px;
+                        }
+                        .google {
+                            font-size: 25px;
+                            background: #c32424;
+                            border-radius: 50%;
+                            height: 45px;
+                            width: 45px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            margin: 10px;
+                        }
+                        .linkedin {
+                            font-size: 25px;
+                            background: gray;
+                            border-radius: 50%;
+                            height: 45px;
+                            width: 45px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            margin: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
