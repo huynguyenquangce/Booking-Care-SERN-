@@ -1,0 +1,191 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+$breakpoints: (
+    phone-sm: 420px,
+    phone: 767px,
+    tablet: 768px,
+    tablet-lg: 1024px,
+    desktop: 1025px,
+    desktop-lg: 1600px
+);
+.home-header-container {
+    height: 70px;
+    width: 100%;
+    // border: 1px solid red;
+    .home-header-content {
+        height: 100%;
+        .home-header-left {
+            // border: 1px solid black;
+            .menu-icon {
+                font-size: 25px;
+                line-height: 70px;
+                margin-left: 20px;
+                color: gray;
+                cursor: pointer;
+            }
+            .logo {
+                background: url("../../assets/images/bookingcare-logo.png") center center no-repeat;
+                background-size: contain;
+                width: 65%;
+            }
+        }
+        .home-header-center {
+            display: none; // Ẩn mặc định
+            @media (min-width: map-get($breakpoints, tablet)) {
+                display: flex; // Hiển thị khi kích thước từ tablet trở lên
+            }
+        }
+        .home-header-right {
+            // border: 1px solid saddlebrown;
+            .support-icon {
+                font-size: 20px;
+                line-height: 70px;
+                margin-left: 30px;
+                color: rgba(0, 255, 255, 0.526);
+            }
+        }
+    }
+}
+.home-header-banner {
+    background: url("../../assets/images/header-background.png") top center no-repeat;
+    // background-size: contain;
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    padding: 15px 0;
+    position: relative;
+    &.dark-overlay::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1); // Adjust the opacity as needed
+        z-index: 1;
+    }
+    .content-up {
+        width: 100%;
+        z-index: 2;
+        .title1 {
+            text-transform: uppercase;
+            font-size: 30px;
+            color: white;
+            text-shadow: 1px 1px 1px #333;
+            margin-bottom: 10px;
+            margin-top: 40px;
+        }
+        .title2 {
+            text-transform: uppercase;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            color: white;
+            z-index: 2;
+        }
+        .search-bar {
+            z-index: 2;
+            width: fit-content;
+            padding: 10px;
+            border-radius: 25px;
+            background: #f7d800;
+            i {
+                margin: 0 5px;
+            }
+            input {
+                height: 35px;
+                width: 380px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+    .content-down {
+        margin-top: 100px;
+        width: 100%;
+        z-index: 2;
+        .options {
+            gap: 30px;
+            .option-1 {
+                .option-1-logo {
+                    background: url("../../assets/images/option1.png") top center no-repeat;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    text-align: center;
+                }
+                .option-1-title {
+                    font-size: 20px;
+                }
+            }
+            .option-2 {
+                .option-2-logo {
+                    background: url("../../assets/images/option2.png") top center no-repeat;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    text-align: center;
+                }
+                .option-2-title {
+                    font-size: 20px;
+                }
+            }
+            .option-3 {
+                .option-3-logo {
+                    background: url("../../assets/images/option3.png") top center no-repeat;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    text-align: center;
+                }
+                .option-3-title {
+                    font-size: 20px;
+                }
+            }
+            .option-4 {
+                .option-4-logo {
+                    background: url("../../assets/images/option4.png") top center no-repeat;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    text-align: center;
+                }
+                .option-4-title {
+                    font-size: 20px;
+                }
+            }
+            .option-5 {
+                .option-5-logo {
+                    background: url("../../assets/images/option5.png") top center no-repeat;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    text-align: center;
+                }
+                .option-5-title {
+                    font-size: 20px;
+                }
+            }
+            .option-6 {
+                .option-6-logo {
+                    background: url("../../assets/images/option6.png") top center no-repeat;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    text-align: center;
+                }
+                .option-6-title {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

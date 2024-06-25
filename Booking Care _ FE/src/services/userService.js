@@ -1,7 +1,30 @@
-import axios from "axios";
+import axios from "../axios";
 
-const handleLogin = (email, password) => {
-  return axios.post("/api/login");
+const handleLoginApi = (userEmail, userPassword) => {
+  return axios.post("/api/login", { email: userEmail, password: userPassword });
 };
 
-export { handleLogin };
+const getAllUsers = (inputId) => {
+  return axios.get(`/api/get-all-user?id=${inputId}`);
+};
+
+const createNewUser = (data) => {
+  return axios.post("/api/create-new-user", data);
+};
+
+const deleteUser = (userId) => {
+  return axios.delete("/api/delete-user", {
+    // headers: {
+    //   Authorization: authorizationToken
+    // },
+    data: {
+      id: userId,
+    },
+  });
+};
+
+const updateUser = (inputData) => {
+  return axios.put("/api/edit-user", inputData);
+};
+
+export { handleLoginApi, getAllUsers, createNewUser, deleteUser, updateUser };

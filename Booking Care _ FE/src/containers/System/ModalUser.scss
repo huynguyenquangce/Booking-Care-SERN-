@@ -1,0 +1,35 @@
+.modal-custom-addUser {
+    .modal-user-body {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+            &.max-width {
+                width: 100%;
+            }
+            input {
+                border-radius: 3px;
+                outline: none;
+                border: 1px solid grey;
+                height: 30px;
+                padding: 0 10px;
+            }
+        }
+    }
+}
+
+.modal-custom-addUser {
+    .modal-content {
+        .modal-header {
+            button {
+                background-color: transparent !important;
+                color: white;
+                border: none;
+                font-size: 30px;
+            }
+        }
+    }
+}
