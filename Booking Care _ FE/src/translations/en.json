@@ -1,4 +1,28 @@
 {
+"homeheader": {
+  "title1": "Specialties",
+  "title1-des": "Find doctors by specialty",
+  "title2": "Healthcare Facilities",
+  "title2-des": "Select hospitals and clinics",
+  "title3": "Doctors",
+  "title3-des": "Choose expert doctors",
+  "title4": "Check-up Packages",
+  "title4-des": "General health check-up",
+  "support": "Support"
+},
+"banner": {
+  "title1": "Healthcare Platform",
+  "title2": "Comprehensive Health Care",
+  "placeholder": "Find medical specialties",
+  "option-1-title": "Specialty Check-up",
+  "option-2-title": "Medical Tests",
+  "option-3-title": "Mental Health",
+  "option-4-title": "Dental Care",
+  "option-5-title": "Nearby Healthcare Facilities",
+  "option-6-title": "Surgery Packages"
+},
+
+
     "common": {
         "add": "Add",
         "edit": "Edit",

@@ -19,7 +19,7 @@ import Header from "./Header/Header";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePages.js";
 import { CustomToastCloseButton } from "../components/CustomToast";
-
+import CustomScrollbars from "../components/CustomScrollbars.js";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -46,20 +46,22 @@ class App extends Component {
           <div className="main-container">
             {this.props.isLoggedIn && <Header />}
 
-            <span className="content-container">
+            <div className="content-container">
               <Switch>
-                <Route path={path.HOME} exact component={Home} />
-                <Route
-                  path={path.LOGIN}
-                  component={userIsNotAuthenticated(Login)}
-                />
-                <Route
-                  path={path.SYSTEM}
-                  component={userIsAuthenticated(System)}
-                />
-                <Route path={path.HOMEPAGE} component={HomePage} />
+                <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
+                  <Route path={path.HOME} exact component={Home} />
+                  <Route
+                    path={path.LOGIN}
+                    component={userIsNotAuthenticated(Login)}
+                  />
+                  <Route
+                    path={path.SYSTEM}
+                    component={userIsAuthenticated(System)}
+                  />
+                  <Route path={path.HOMEPAGE} component={HomePage} />
+                </CustomScrollbars>
               </Switch>
-            </span>
+            </div>
 
             <ToastContainer
               className="toast-container"
