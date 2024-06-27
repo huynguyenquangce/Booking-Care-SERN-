@@ -39,7 +39,6 @@ class ModalUser extends Component {
     // Should copy state to new State and assign, then assign this.state to new State
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
-    console.log(copyState);
     this.setState({
       ...copyState,
     });
