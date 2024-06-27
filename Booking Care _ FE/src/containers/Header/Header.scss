@@ -20,4 +20,23 @@
             font-size: $base-size + 1px;
         }
     }
+
+    .languages {
+        .language-vi {
+            cursor: pointer;
+            opacity: 0.5;
+            &.active {
+                opacity: 1;
+                color: red;
+            }
+        }
+        .language-en {
+            cursor: pointer;
+            opacity: 0.5;
+            &.active {
+                opacity: 1;
+                color: yellowgreen;
+            }
+        }
+    }
 }

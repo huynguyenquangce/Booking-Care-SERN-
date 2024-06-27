@@ -10,6 +10,10 @@ $breakpoints: (
     desktop-lg: 1600px
 );
 .home-header-container {
+    position: sticky !important;
+    top: 0;
+    background-color: whitesmoke !important;
+    z-index: 1000000;
     height: 70px;
     width: 100%;
     // border: 1px solid red;
@@ -37,7 +41,7 @@ $breakpoints: (
             @media (min-width: map-get($breakpoints, tablet)) {
                 display: flex; // Hiển thị khi kích thước từ tablet trở lên
                 justify-content: space-between;
-                gap: 50px;
+                gap: 60px;
             }
 
             .section {
@@ -164,7 +168,7 @@ $breakpoints: (
             display: block; // Hiển thị khi kích thước từ tablet trở lên
         }
         .options {
-            gap: 30px;
+            gap: 50px;
             .option-1 {
                 .option-1-logo {
                     background: url("../../assets/images/option1.png") top center no-repeat;
@@ -177,8 +181,11 @@ $breakpoints: (
                 .option-1-title {
                     font-size: 20px;
                     color: white;
-                    width: 100px;
+                    width: 120px;
                     height: 100px;
+                    &:hover {
+                        color: rgb(21, 21, 198);
+                    }
                 }
             }
             .option-2 {
@@ -193,8 +200,11 @@ $breakpoints: (
                 .option-2-title {
                     font-size: 20px;
                     color: white;
-                    width: 100px;
+                    width: 120px;
                     height: 100px;
+                    &:hover {
+                        color: rgb(21, 21, 198);
+                    }
                 }
             }
             .option-3 {
@@ -209,8 +219,11 @@ $breakpoints: (
                 .option-3-title {
                     font-size: 20px;
                     color: white;
-                    width: 100px;
+                    width: 120px;
                     height: 100px;
+                    &:hover {
+                        color: rgb(21, 21, 198);
+                    }
                 }
             }
             .option-4 {
@@ -225,8 +238,11 @@ $breakpoints: (
                 .option-4-title {
                     font-size: 20px;
                     color: white;
-                    width: 100px;
+                    width: 120px;
                     height: 100px;
+                    &:hover {
+                        color: rgb(21, 21, 198);
+                    }
                 }
             }
             .option-5 {
@@ -241,8 +257,11 @@ $breakpoints: (
                 .option-5-title {
                     font-size: 20px;
                     color: white;
-                    width: 100px;
+                    width: 120px;
                     height: 100px;
+                    &:hover {
+                        color: rgb(21, 21, 198);
+                    }
                 }
             }
             .option-6 {
@@ -257,8 +276,11 @@ $breakpoints: (
                 .option-6-title {
                     font-size: 20px;
                     color: white;
-                    width: 100px;
+                    width: 120px;
                     height: 100px;
+                    &:hover {
+                        color: rgb(21, 21, 198);
+                    }
                 }
             }
         }

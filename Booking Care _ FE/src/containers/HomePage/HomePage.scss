@@ -1,0 +1,97 @@
+// Customize arrow sliders
+.slick-prev {
+    height: 48px !important;
+    width: 44px !important;
+    z-index: 10000 !important;
+    background: #fff !important;
+    left: -19px !important;
+    border: 2px solid #d7d7d7 !important;
+    &:hover {
+        background: #d7d7d7 !important;
+    }
+}
+.slick-prev::before {
+    font-family: FontAwesome !important;
+    // content: "\e257" !important;
+    color: black !important;
+}
+.slick-next {
+    height: 48px !important;
+    width: 44px !important;
+    z-index: 10000 !important;
+    background: #fff !important;
+    border: 2px solid #d7d7d7 !important;
+    right: -10px;
+    &:hover {
+        background: #d7d7d7 !important;
+    }
+}
+.slick-next:before {
+    font-family: FontAwesome !important;
+    color: black !important;
+}
+
+/////////////////-////////////////////////////////////////////////////////////////////////
+///
+.section-container {
+    &.specialty-container {
+        background-color: #f5f5f5;
+    }
+    &.doctor-container {
+        background: url("../../assets/images/doctor/background.png");
+        height: 480px !important;
+    }
+    &.about-container {
+        background: url("../../assets/images/doctor/background.png");
+    }
+    height: 620px;
+    // margin-top: 60px !important;
+    .section-content {
+        margin: 0 50px;
+        .section-header {
+            display: flex;
+            &.content-header {
+                justify-content: center;
+            }
+        }
+        .section-body {
+            // border: 1px solid black !important;
+            .slick-list {
+                padding: 0 10px; /* Add padding to slick-list to account for margins */
+            }
+            .slick-track {
+                display: flex;
+            }
+            .slick-slide {
+                margin-right: 15px; /* Adjust this value as needed */
+                box-sizing: border-box; /* Ensure padding/margin do not affect slide width */
+            }
+            .img-customize {
+                height: 300px;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    background-repeat: no-repeat !important;
+
+                    &.custom-doctor-img {
+                        width: 220px;
+                        height: 220px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            // About section
+            .radius-video-about {
+                .rounded-video {
+                    border-radius: 15px !important;
+                }
+            }
+            .description-video {
+                line-height: 30px;
+                font-size: 20px;
+            }
+        }
+    }
+}

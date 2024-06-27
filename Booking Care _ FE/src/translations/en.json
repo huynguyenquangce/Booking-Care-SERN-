@@ -22,6 +22,12 @@
   "option-6-title": "Surgery Packages"
 },
 
+"specialty" :
+{
+    "title": "Popular Specialties",
+    "extension-btn": "Extension"
+},
+
 
     "common": {
         "add": "Add",
@@ -55,8 +61,8 @@
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",
-                "product-manage": "Package manage",
-                "register-package-group-or-account": "Register service package for group/account"
+                "user-redux": "User redux"
+           
             },
             "system-parameter": {
                 "header": "System-parameter"
