@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import UserManage from "../containers/System/UserManage";
-import UserRedux from "../containers/System/Admin/UserRedux";
+// import UserReduxModal from "../containers/System/Admin/UserReduxModal";
 import Header from "../containers/Header/Header";
+import UserRedux from "../containers/System/Admin/UserRedux";
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;

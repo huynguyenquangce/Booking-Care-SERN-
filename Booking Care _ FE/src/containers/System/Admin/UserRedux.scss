@@ -1,6 +1,25 @@
-.preview-image {
-    height: 80px;
-    width: 100%;
-    border: 1px solid black;
-    cursor: pointer;
+.list-user-redux-container {
+    width: 100% !important;
+    .user-table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04aa6d;
+            color: white;
+        }
+    }
 }

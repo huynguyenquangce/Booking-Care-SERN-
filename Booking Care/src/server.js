@@ -38,8 +38,11 @@ app.use(cors({ credentials: true, origin: true }));
 // });
 
 //config app
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.json({ limit: "16mb" }));
+app.use(express.urlencoded({ limit: "16mb" }));
 
 viewEngine(app);
 initWebRoutes(app);

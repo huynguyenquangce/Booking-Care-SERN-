@@ -56,6 +56,8 @@
             "manage-handbook": "Handbook Manage"
         }
     },
+
+    
     "manage-user":
     {
         "add": "Add New User",
@@ -70,7 +72,8 @@
         "position": "Position",
         "role": "Role",
         "save": "Save User",
-        "image": "Image"
+        "image": "Image",
+        "edit": "Save Edit"
     }
     
 }

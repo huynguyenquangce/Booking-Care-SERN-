@@ -30,7 +30,6 @@ class ModalEditUser extends Component {
         lastName: userEdit.lastName,
         address: userEdit.address,
       });
-    } else {
     }
   }
   toggle = () => {

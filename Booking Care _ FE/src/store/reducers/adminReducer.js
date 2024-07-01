@@ -1,9 +1,9 @@
 import actionTypes from "../actions/actionTypes";
-
 const initialState = {
   genders: [],
   roles: [],
   position: [],
+  allUser: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -15,7 +15,6 @@ const adminReducer = (state = initialState, action) => {
     case actionTypes.FETCH_GENDER_SUCCESS:
       let copyState = { ...state };
       copyState.genders = action.data;
-      console.log("fire fetch gender success", copyState);
       return {
         ...copyState,
       };
@@ -41,6 +40,37 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FECTH_ROLE_FAILED:
       state.roles = [];
+      return {
+        ...state,
+      };
+    // Get All User
+    case actionTypes.FETCH_ALL_USER_SUCCESS:
+      state.allUser = action.users;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALL_USER_FAILED:
+      state.allUser = [];
+      return {
+        ...state,
+      };
+    // Delete User
+    case actionTypes.DELETE_USER_SUCCESS:
+      console.log("Delete User Reducer", action);
+      return {
+        ...state,
+      };
+    case actionTypes.DELETE_USER_FAILED:
+      return {
+        ...state,
+      };
+    // Update User
+    case actionTypes.UPDATE_USER_SUCCESS:
+      console.log("Update User Reducer", action);
+      return {
+        ...state,
+      };
+    case actionTypes.UPDATE_USER_FAILED:
       return {
         ...state,
       };

@@ -1,5 +1,12 @@
 import actionTypes from "./actionTypes";
-import { getAllCodeData, createNewUser } from "../../services/userService";
+import {
+  getAllCodeData,
+  createNewUser,
+  getAllUsers,
+  deleteUser,
+  updateUser,
+} from "../../services/userService";
+import { toast } from "react-toastify";
 
 // export const fetchGenderStart = () => ({
 //   type: actionTypes.FETCH_GENDER_START,
@@ -84,6 +91,7 @@ export const createNewUsers = (inputData) => {
     try {
       let res = await createNewUser(inputData);
       if (res && res.errCode === 0) {
+        toast.success("Create New User Success");
         dispatch(saveUserSuccess());
       } else {
         dispatch(saveUserFailed());
@@ -101,4 +109,78 @@ export const saveUserFailed = () => ({
 
 export const saveUserSuccess = () => ({
   type: actionTypes.CREATE_USER_SUCCESS,
+});
+
+export const getAllUsersAction = (inputData) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllUsers(inputData);
+      if (res && res.errCode === 0) {
+        dispatch(fetchUserSuccess(res.user));
+      } else {
+        dispatch(fetchUserFailed());
+      }
+    } catch (error) {
+      dispatch(fetchUserFailed());
+    }
+  };
+};
+
+export const fetchUserSuccess = (data) => ({
+  type: actionTypes.FETCH_ALL_USER_SUCCESS,
+  users: data,
+});
+
+export const fetchUserFailed = () => ({
+  type: actionTypes.FETCH_ALL_USER_FAILED,
+});
+
+export const deleteUserStart = (inputData) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await deleteUser(inputData);
+      if (res && res.errCode === 0) {
+        toast.success("Delete User Success");
+        dispatch(deleteUserSuccess());
+      } else {
+        dispatch(deleteUserFailed());
+      }
+    } catch (error) {
+      dispatch(deleteUserFailed());
+    }
+  };
+};
+
+export const deleteUserSuccess = () => ({
+  type: actionTypes.DELETE_USER_SUCCESS,
+});
+
+export const deleteUserFailed = () => ({
+  type: actionTypes.DELETE_USER_FAILED,
+});
+
+export const updateUserStart = (inputData) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await updateUser(inputData);
+      console.log(res);
+      if (res && res.errCode === 0) {
+        toast.success("Update User Success!");
+        dispatch(updateUserSuccess());
+      } else {
+        dispatch(updateUserFailed());
+      }
+    } catch (error) {
+      dispatch(updateUserFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const updateUserSuccess = () => ({
+  type: actionTypes.UPDATE_USER_SUCCESS,
+});
+
+export const updateUserFailed = () => ({
+  type: actionTypes.UPDATE_USER_FAILED,
 });

@@ -88,7 +88,6 @@ class UserManage extends Component {
   };
   getInputFromChildToEditUser = async (data) => {
     try {
-      console.log(data);
       let message = await updateUser(data);
       if (message && message.errCode === 0) {
         await this.callAPIgetAllUsers();
