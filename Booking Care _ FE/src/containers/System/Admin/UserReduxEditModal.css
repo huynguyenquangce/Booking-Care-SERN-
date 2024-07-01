@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.preview-image {
+  height: 80px;
+  width: 100%;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.user-redux-modal {
+  max-width: 90% !important;
+}
+.user-redux-modal .modal-content {
+  height: 80vh;
+}
+.user-redux-modal .modal-content .modal-header button {
+  width: 30px !important;
+}
+.user-redux-modal .modal-content .modal-header button span {
+  font-size: 20px !important;
+}
+
+/* Ghi đè z-index cho overlay của modal */
+.ReactModal__Overlay {
+  z-index: 2000 !important; /* Chỉnh z-index của overlay */
+}/*# sourceMappingURL=UserReduxEditModal.css.map */

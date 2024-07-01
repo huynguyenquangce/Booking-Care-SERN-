@@ -1,0 +1,88 @@
+.slick-prev {
+  height: 48px !important;
+  width: 44px !important;
+  z-index: 10000 !important;
+  background: #fff !important;
+  left: -19px !important;
+  border: 2px solid #d7d7d7 !important;
+}
+.slick-prev:hover {
+  background: #d7d7d7 !important;
+}
+
+.slick-prev::before {
+  font-family: FontAwesome !important;
+  color: black !important;
+}
+
+.slick-next {
+  height: 48px !important;
+  width: 44px !important;
+  z-index: 10000 !important;
+  background: #fff !important;
+  border: 2px solid #d7d7d7 !important;
+  right: -10px;
+}
+.slick-next:hover {
+  background: #d7d7d7 !important;
+}
+
+.slick-next:before {
+  font-family: FontAwesome !important;
+  color: black !important;
+}
+
+.section-container {
+  height: 620px;
+}
+.section-container.specialty-container {
+  background-color: #f5f5f5;
+}
+.section-container.doctor-container {
+  background: url("../../assets/images/doctor/background.png");
+  height: 480px !important;
+}
+.section-container.about-container {
+  background: url("../../assets/images/doctor/background.png");
+}
+.section-container .section-content {
+  margin: 0 50px;
+}
+.section-container .section-content .section-header {
+  display: flex;
+}
+.section-container .section-content .section-header.content-header {
+  justify-content: center;
+}
+.section-container .section-content .section-body .slick-list {
+  padding: 0 10px; /* Add padding to slick-list to account for margins */
+}
+.section-container .section-content .section-body .slick-track {
+  display: flex;
+}
+.section-container .section-content .section-body .slick-slide {
+  margin-right: 15px; /* Adjust this value as needed */
+  box-sizing: border-box; /* Ensure padding/margin do not affect slide width */
+}
+.section-container .section-content .section-body .img-customize {
+  height: 300px;
+}
+.section-container .section-content .section-body .img-customize img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-repeat: no-repeat !important;
+}
+.section-container .section-content .section-body .img-customize img.custom-doctor-img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+}
+.section-container .section-content .section-body .radius-video-about .rounded-video {
+  border-radius: 15px !important;
+}
+.section-container .section-content .section-body .description-video {
+  line-height: 30px;
+  font-size: 20px;
+}/*# sourceMappingURL=HomePage.css.map */

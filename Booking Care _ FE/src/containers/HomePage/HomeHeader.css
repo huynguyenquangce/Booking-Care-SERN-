@@ -1,0 +1,268 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.home-header-container {
+  position: sticky !important;
+  top: 0;
+  background-color: whitesmoke !important;
+  z-index: 1000000;
+  height: 70px;
+  width: 100%;
+}
+.home-header-container .home-header-content {
+  height: 100%;
+}
+.home-header-container .home-header-content .home-header-left .menu-icon {
+  font-size: 25px;
+  line-height: 70px;
+  margin-left: 100px;
+  color: gray;
+  cursor: pointer;
+}
+.home-header-container .home-header-content .home-header-left .logo {
+  background: url("../../assets/images/bookingcare-logo.png") center center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  background-size: 65%;
+}
+.home-header-container .home-header-content .home-header-center {
+  display: none;
+}
+@media (min-width: 768px) {
+  .home-header-container .home-header-content .home-header-center {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+  }
+}
+.home-header-container .home-header-content .home-header-center .section {
+  height: 15px;
+  max-width: 150px;
+  margin-bottom: 5px;
+}
+.home-header-container .home-header-content .home-header-center .subsection {
+  max-width: 100px;
+}
+@media (max-width: 768px) {
+  .home-header-container .home-header-content .home-header-center .subsection {
+    display: none;
+  }
+}
+.home-header-container .home-header-content .home-header-right .support {
+  padding-right: 60px;
+  cursor: pointer;
+}
+.home-header-container .home-header-content .home-header-right .support .support-icon {
+  font-size: 20px;
+  line-height: 70px;
+  margin-left: 30px;
+  color: rgba(0, 255, 255, 0.526);
+}
+.home-header-container .home-header-content .home-header-right .language-vi {
+  cursor: pointer;
+  opacity: 0.2;
+}
+.home-header-container .home-header-content .home-header-right .language-vi.active {
+  opacity: 1;
+}
+.home-header-container .home-header-content .home-header-right .language-vi.active span {
+  color: orange;
+}
+.home-header-container .home-header-content .home-header-right .language-vi:hover {
+  opacity: 1;
+}
+.home-header-container .home-header-content .home-header-right .language-vi:hover span {
+  color: orange;
+}
+.home-header-container .home-header-content .home-header-right .language-en {
+  margin: 0 10px;
+  cursor: pointer;
+  opacity: 0.2;
+}
+.home-header-container .home-header-content .home-header-right .language-en.active {
+  opacity: 1;
+}
+.home-header-container .home-header-content .home-header-right .language-en.active span {
+  color: blue;
+}
+.home-header-container .home-header-content .home-header-right .language-en:hover {
+  opacity: 1;
+}
+.home-header-container .home-header-content .home-header-right .language-en:hover span {
+  color: blue;
+}
+
+.home-header-banner {
+  background: url("../../assets/images/header-background.png") top center no-repeat;
+  width: 100%;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  padding: 15px 0;
+  position: relative;
+}
+.home-header-banner.dark-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.home-header-banner .content-up {
+  width: 100%;
+  z-index: 2;
+}
+.home-header-banner .content-up .title1 {
+  text-transform: uppercase;
+  font-size: 30px;
+  color: white;
+  text-shadow: 1px 1px 1px #333;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+.home-header-banner .content-up .title2 {
+  text-transform: uppercase;
+  font-size: 30px;
+  text-shadow: 1px 1px 1px #333;
+  color: white;
+  z-index: 2;
+}
+.home-header-banner .content-up .search-bar {
+  z-index: 2;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 25px;
+  background: #f7d800;
+}
+.home-header-banner .content-up .search-bar i {
+  margin: 0 5px;
+}
+.home-header-banner .content-up .search-bar input {
+  height: 35px;
+  width: 380px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.home-header-banner .content-down {
+  margin-top: 150px;
+  width: 100%;
+  z-index: 2;
+  display: none;
+}
+@media (min-width: 768px) {
+  .home-header-banner .content-down {
+    display: block;
+  }
+}
+.home-header-banner .content-down .options {
+  gap: 50px;
+}
+.home-header-banner .content-down .options .option-1 .option-1-logo {
+  background: url("../../assets/images/option1.png") top center no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  text-align: center;
+}
+.home-header-banner .content-down .options .option-1 .option-1-title {
+  font-size: 20px;
+  color: white;
+  width: 120px;
+  height: 100px;
+}
+.home-header-banner .content-down .options .option-1 .option-1-title:hover {
+  color: rgb(21, 21, 198);
+}
+.home-header-banner .content-down .options .option-2 .option-2-logo {
+  background: url("../../assets/images/option2.png") top center no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  text-align: center;
+}
+.home-header-banner .content-down .options .option-2 .option-2-title {
+  font-size: 20px;
+  color: white;
+  width: 120px;
+  height: 100px;
+}
+.home-header-banner .content-down .options .option-2 .option-2-title:hover {
+  color: rgb(21, 21, 198);
+}
+.home-header-banner .content-down .options .option-3 .option-3-logo {
+  background: url("../../assets/images/option3.png") top center no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  text-align: center;
+}
+.home-header-banner .content-down .options .option-3 .option-3-title {
+  font-size: 20px;
+  color: white;
+  width: 120px;
+  height: 100px;
+}
+.home-header-banner .content-down .options .option-3 .option-3-title:hover {
+  color: rgb(21, 21, 198);
+}
+.home-header-banner .content-down .options .option-4 .option-4-logo {
+  background: url("../../assets/images/option4.png") top center no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  text-align: center;
+}
+.home-header-banner .content-down .options .option-4 .option-4-title {
+  font-size: 20px;
+  color: white;
+  width: 120px;
+  height: 100px;
+}
+.home-header-banner .content-down .options .option-4 .option-4-title:hover {
+  color: rgb(21, 21, 198);
+}
+.home-header-banner .content-down .options .option-5 .option-5-logo {
+  background: url("../../assets/images/option5.png") top center no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  text-align: center;
+}
+.home-header-banner .content-down .options .option-5 .option-5-title {
+  font-size: 20px;
+  color: white;
+  width: 120px;
+  height: 100px;
+}
+.home-header-banner .content-down .options .option-5 .option-5-title:hover {
+  color: rgb(21, 21, 198);
+}
+.home-header-banner .content-down .options .option-6 .option-6-logo {
+  background: url("../../assets/images/option6.png") top center no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  text-align: center;
+}
+.home-header-banner .content-down .options .option-6 .option-6-title {
+  font-size: 20px;
+  color: white;
+  width: 120px;
+  height: 100px;
+}
+.home-header-banner .content-down .options .option-6 .option-6-title:hover {
+  color: rgb(21, 21, 198);
+}/*# sourceMappingURL=HomeHeader.css.map */

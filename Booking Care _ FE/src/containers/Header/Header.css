@@ -1,0 +1,53 @@
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-red {
+  color: #d01a1d !important;
+}
+
+.header-container {
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  background-color: #0071ba;
+  color: white;
+  height: 40px;
+  position: relative;
+}
+.header-container .btn-logout {
+  color: white;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 10px;
+}
+.header-container .btn-logout:hover {
+  background-color: #0062a1;
+}
+.header-container .btn-logout i {
+  font-size: 17px;
+}
+.header-container .languages .language-vi {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.header-container .languages .language-vi.active {
+  opacity: 1;
+  color: red;
+}
+.header-container .languages .language-en {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.header-container .languages .language-en.active {
+  opacity: 1;
+  color: yellowgreen;
+}/*# sourceMappingURL=Header.css.map */

@@ -1,0 +1,25 @@
+.list-user-redux-container {
+  width: 100% !important;
+}
+.list-user-redux-container .user-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+.list-user-redux-container .user-table td,
+.list-user-redux-container .user-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.list-user-redux-container .user-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.list-user-redux-container .user-table tr:hover {
+  background-color: #ddd;
+}
+.list-user-redux-container .user-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}/*# sourceMappingURL=UserRedux.css.map */
