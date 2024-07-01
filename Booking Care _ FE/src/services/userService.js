@@ -34,6 +34,10 @@ const getAllCodeData = (inputData) => {
 const getTopDoctor = (inputData) => {
   return axios.get(`/api/get-top-doctor?limit=${inputData}`);
 };
+
+const getDoctorSelect = () => {
+  return axios.get("/api/get-doctor-home-select");
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -42,4 +46,5 @@ export {
   updateUser,
   getAllCodeData,
   getTopDoctor,
+  getDoctorSelect,
 };

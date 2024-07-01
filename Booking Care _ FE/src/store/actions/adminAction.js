@@ -6,6 +6,7 @@ import {
   deleteUser,
   updateUser,
   getTopDoctor,
+  getDoctorSelect,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -186,6 +187,7 @@ export const updateUserFailed = () => ({
   type: actionTypes.UPDATE_USER_FAILED,
 });
 
+// fetch data doctor
 export const fetchDoctorStart = (limitInput) => {
   return async (dispatch, getState) => {
     try {
@@ -207,5 +209,30 @@ export const fetchDoctorSuccess = (input) => ({
 });
 
 export const fetchDoctorFailed = () => ({
+  type: actionTypes.UPDATE_USER_FAILED,
+});
+
+// fetch data doctor for select
+export const fetchDoctorSelectStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorSelect();
+      if (res && res.errCode === 0) {
+        dispatch(fetchDoctorSelectSuccess(res.data));
+      } else {
+        dispatch(fetchDoctorSelectFailed());
+      }
+    } catch (error) {
+      dispatch(fetchDoctorSelectFailed());
+    }
+  };
+};
+
+export const fetchDoctorSelectSuccess = (input) => ({
+  type: actionTypes.FETCH_DOCTOR_SUCCESS,
+  doctorSelect: input,
+});
+
+export const fetchDoctorSelectFailed = () => ({
   type: actionTypes.UPDATE_USER_FAILED,
 });

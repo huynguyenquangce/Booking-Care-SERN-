@@ -5,6 +5,7 @@ const initialState = {
   position: [],
   allUser: [],
   doctor: [],
+  doctorSelect: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -79,12 +80,21 @@ const adminReducer = (state = initialState, action) => {
     // get doctor
     case actionTypes.FETCH_DOCTOR_SUCCESS:
       state.doctor = action.doctor;
-      console.log("check action doctor", action.doctor);
-      console.log("get doctor", state);
       return {
         ...state,
       };
     case actionTypes.FETCH_DOCTOR_FAILED:
+      return {
+        ...state,
+      };
+    // get doctor select
+    case actionTypes.FETCH_DOCTOR_SELECT_SUCCESS:
+      state.doctorSelect = action.doctorSelect;
+      console.log("check action doctorSelect", state.doctorSelect);
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_DOCTOR_SELECT_FAILED:
       return {
         ...state,
       };
