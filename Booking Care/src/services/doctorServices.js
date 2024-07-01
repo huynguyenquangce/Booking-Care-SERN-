@@ -33,6 +33,24 @@ let getTopDoctorService = (limitInput) => {
   });
 };
 
+let getDoctorSelectService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let doctorSelect = await db.Users.findAll({
+        where: { roleid: "R2" },
+        attributes: { exclude: ["password", "image"] },
+      });
+      resolve({
+        errCode: 0,
+        errMessage: "OK",
+        data: doctorSelect,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   getTopDoctorService: getTopDoctorService,
+  getDoctorSelectService: getDoctorSelectService,
 };
