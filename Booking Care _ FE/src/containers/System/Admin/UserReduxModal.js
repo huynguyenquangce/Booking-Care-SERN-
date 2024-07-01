@@ -44,7 +44,7 @@ class UserReduxModal extends Component {
       this.setState({
         // TH người dùng k chọn gì cả, xử lí lấy giá trị mặc định
         genderArr: arrGender,
-        gender: arrGender && arrGender.length > 0 ? arrGender[0].key : " ",
+        gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : " ",
       });
     }
     if (prevProps.positionRedux !== this.props.positionRedux) {
@@ -52,14 +52,14 @@ class UserReduxModal extends Component {
       this.setState({
         positionArr: arrPosition,
         position:
-          arrPosition && arrPosition.length > 0 ? arrPosition[0].key : "",
+          arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : "",
       });
     }
     if (prevProps.roleRedux !== this.props.roleRedux) {
       let arrRole = this.props.roleRedux;
       this.setState({
         roleArr: arrRole,
-        role: arrRole && arrRole.length > 0 ? arrRole[0].key : "",
+        role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : "",
       });
     }
   }
@@ -271,7 +271,7 @@ class UserReduxModal extends Component {
                       genders.length > 0 &&
                       genders.map((item, index) => {
                         return (
-                          <option key={index} value={item.key}>
+                          <option key={index} value={item.keyMap}>
                             {language && language === "vi"
                               ? item.valueVi
                               : item.valueEn}
@@ -294,7 +294,7 @@ class UserReduxModal extends Component {
                       roles.length > 0 &&
                       roles.map((item, index) => {
                         return (
-                          <option key={index} value={item.key}>
+                          <option key={index} value={item.keyMap}>
                             {language && language === "vi"
                               ? item.valueVi
                               : item.valueEn}
@@ -316,7 +316,7 @@ class UserReduxModal extends Component {
                       positions.length > 0 &&
                       positions.map((item, index) => {
                         return (
-                          <option key={index} value={item.key}>
+                          <option key={index} value={item.keyMap}>
                             {language && language === "vi"
                               ? item.valueVi
                               : item.valueEn}

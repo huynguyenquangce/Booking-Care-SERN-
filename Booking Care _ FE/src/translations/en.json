@@ -28,6 +28,14 @@
     "title": "Popular Specialties",
     "extension-btn": "Extension"
 },
+
+
+"outstanding-doctor":
+{
+    "title": "Outstanding Doctor",
+    "extension-btn": "Extension"
+},
+
     "menu": {
         "system": {
             "header": "System",

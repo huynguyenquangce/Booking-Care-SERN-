@@ -20,7 +20,7 @@ class Specialty extends Component {
             <span className="h2">
               <FormattedMessage id="specialty.title" />
             </span>
-            <span className="btn btn-primary p-4 justify-content-center align-items-center d-flex">
+            <span className="btn btn-primary p-3 justify-content-center align-items-center d-flex">
               <FormattedMessage id="specialty.extension-btn" />
             </span>
           </div>

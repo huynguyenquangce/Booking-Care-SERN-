@@ -11,7 +11,7 @@ class Facility extends Component {
         <div className="section-content d-flex flex-column">
           <div className="section-header mt-5 justify-content-between">
             <span className="h2">Cơ sở y tế nổi bật</span>
-            <span className="btn btn-primary p-4 justify-content-center align-items-center d-flex">
+            <span className="btn btn-primary p-3 justify-content-center align-items-center d-flex">
               Xem thêm
             </span>
           </div>

@@ -29,8 +29,15 @@
     "specialty" :
     {
         "title": "Chuyên khoa phổ biến",
+         "extension-btn": "Xem thêm"
+    },
+
+    "outstanding-doctor":
+    {
+        "title": "Bác sĩ nổi bật",
         "extension-btn": "Xem thêm"
     },
+
     "menu": {
         "system": {
             "header": "Hệ thống",

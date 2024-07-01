@@ -4,6 +4,7 @@ const initialState = {
   roles: [],
   position: [],
   allUser: [],
+  doctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -71,6 +72,19 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       };
     case actionTypes.UPDATE_USER_FAILED:
+      return {
+        ...state,
+      };
+
+    // get doctor
+    case actionTypes.FETCH_DOCTOR_SUCCESS:
+      state.doctor = action.doctor;
+      console.log("check action doctor", action.doctor);
+      console.log("get doctor", state);
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_DOCTOR_FAILED:
       return {
         ...state,
       };
