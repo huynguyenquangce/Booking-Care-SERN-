@@ -97,7 +97,9 @@ class UserManage extends Component {
           userEdit={this.state.userEdit}
           getDataFromChild={this.getDataFromChild}
         ></UserReduxEditModal>
-        <div className="text-center title">Quản lí người dùng redux</div>
+        <div className="text-center title">
+          <FormattedMessage id="manage-user.title"></FormattedMessage>
+        </div>
         <div className="user-modal-button mx-1 mt-3">
           <button
             className="btn px-3 btn-primary text-center"
@@ -151,6 +153,7 @@ class UserManage extends Component {
 const mapStateToProps = (state) => {
   return {
     listUser: state.admin.allUser,
+    language: state.app.language,
   };
 };
 

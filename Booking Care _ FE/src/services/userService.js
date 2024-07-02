@@ -38,6 +38,11 @@ const getTopDoctor = (inputData) => {
 const getDoctorSelect = () => {
   return axios.get("/api/get-doctor-home-select");
 };
+
+const postDoctorInfo = (inputData) => {
+  return axios.post("/api/post-info-doctor", inputData);
+};
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -47,4 +52,5 @@ export {
   getAllCodeData,
   getTopDoctor,
   getDoctorSelect,
+  postDoctorInfo,
 };

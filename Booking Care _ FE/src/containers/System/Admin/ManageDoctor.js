@@ -28,22 +28,21 @@ class ManageDoctor extends Component {
 
   buildOptionSelect = (inputData) => {
     let result = [];
-    let { language } = this.props.language;
+    let languages = this.props.language;
     if (inputData && inputData.length > 0) {
       inputData.map((item, index) => {
         let object = {};
         let dataVi = `${item.lastName} ${item.firstName}`;
         let dataEn = `${item.firstName} ${item.lastName}`;
-        object.label = language === LANGUAGE.Vi ? dataVi : dataEn;
+        object.label = languages === LANGUAGE.VI ? dataVi : dataEn;
         object.value = item.id;
         result.push(object);
       });
     }
+    return result;
   };
   componentDidMount() {
     this.props.getDoctorSelect();
-    // let dataSelect = this.buildOptionSelect(this.props.arrDoctorSelect);
-    // console.log("checker", dataSelect);
   }
   handleEditorChange = ({ html, text }) => {
     console.log("handleEditorChange", html, text);
@@ -61,11 +60,15 @@ class ManageDoctor extends Component {
       selectedOption: "",
       description: "",
     });
+    this.props.createInfoDoctor({
+      doctorId: this.state.selectedOption.value,
+      contentMarkDown: this.state.contentMarkdown,
+      contentHTML: this.state.contentHTML,
+      description: this.state.description,
+    });
   };
   handleChange = (selectedOption) => {
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
-    );
+    this.setState({ selectedOption }, () => console.log(`Option selected:`));
   };
   handleChangeTextArea = (event) => {
     this.setState({
@@ -75,22 +78,36 @@ class ManageDoctor extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.arrDoctorSelect !== this.props.arrDoctorSelect) {
-      let dataSelect = this.buildOptionSelect(this.props.arrDoctoSelect);
-      console.log("Checking", this.props.arrDoctoSelect);
+      let dataSelects = this.buildOptionSelect(this.props.arrDoctorSelect);
       this.setState({
-        options: dataSelect,
+        options: dataSelects,
+      });
+    }
+    if (prevProps.language !== this.props.language) {
+      let dataSelects = this.buildOptionSelect(this.props.arrDoctorSelect);
+      this.setState({
+        options: dataSelects,
       });
     }
   }
   render() {
-    console.log("Check props", this.props.arrDoctoSelect);
     return (
       <div className="markdown-editor-container">
         <div className="markdown-editor-title text-center m-5 h2 text-primary">
-          Markdown Doctor
+          <FormattedMessage id="doctor.info-title"></FormattedMessage>
         </div>
-        <label className="ms-2 text-secondary h4">Thông tin thêm</label>
+        <label className="ms-2 text-secondary h4">
+          {" "}
+          <FormattedMessage id="doctor.select"></FormattedMessage>
+        </label>
         <div className="more-info row mb-3 ms-2">
+          <div className="col-3 select-doctor">
+            <Select
+              value={this.state.selectedOption}
+              onChange={this.handleChange}
+              options={this.state.options}
+            />
+          </div>
           <div data-mdb-input-init class="form-outline col-5">
             <textarea
               class="form-control"
@@ -99,13 +116,6 @@ class ManageDoctor extends Component {
               onChange={(event) => this.handleChangeTextArea(event)}
               value={this.state.description}
             ></textarea>
-          </div>
-          <div className="col-2 select-doctor">
-            <Select
-              value={this.state.selectedOption}
-              onChange={this.handleChange}
-              options={this.state.options}
-            />
           </div>
         </div>
         <div>
@@ -137,6 +147,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getDoctorSelect: () => dispatch(actions.fetchDoctorSelectStart()),
+    createInfoDoctor: (data) => dispatch(actions.createDoctorInfoStart(data)),
   };
 };
 

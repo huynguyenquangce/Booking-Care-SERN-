@@ -7,6 +7,7 @@ import image from "../../../assets/images/doctor/bs-nguyen-ngoc-thanh.jpg";
 import { LANGUAGE } from "../../../utils/constant";
 import * as actions from "../../../store/actions";
 import { FormattedMessage } from "react-intl";
+import { withRouter } from "react-router";
 class Doctor extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,10 @@ class Doctor extends Component {
     }
   }
 
+  handleViewDetailsDoctor = (data) => {
+    console.log("View", data);
+    this.props.history.push(`/detail-doctor/id=${data.id}`);
+  };
   async componentDidMount() {
     this.props.getTopDoctor(10);
   }
@@ -64,7 +69,11 @@ class Doctor extends Component {
                         " " +
                         item.lastName;
                   return (
-                    <div className="img-customize">
+                    <div
+                      className="img-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailsDoctor(item)}
+                    >
                       <div className="customize-circle-img d-flex justify-content-center">
                         <img
                           className="custom-doctor-img"
@@ -100,4 +109,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Doctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Doctor));

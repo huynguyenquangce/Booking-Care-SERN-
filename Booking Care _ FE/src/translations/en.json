@@ -82,6 +82,10 @@
         "save": "Save User",
         "image": "Image",
         "edit": "Save Edit"
-    }
-    
+    },
+    "doctor": {
+        "info-title": "Create additional information for the doctor",
+        "select": "Select doctor",
+        "introduce-info": "Introduction information"
+      }
 }

@@ -83,6 +83,13 @@
         "save": "Lưu người dùng",
         "image": "Hình ảnh",
         "edit": "Lưu chỉnh sửa"
+    },
+
+    "doctor":
+    {
+        "info-title": "Tạo thông tin thêm cho bác sĩ",
+        "select":"Chọn bác sĩ",
+        "introduce-info":"Thông tin giới thiệu"
     }
 
 }

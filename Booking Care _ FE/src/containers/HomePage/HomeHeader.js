@@ -81,65 +81,67 @@ class HomeHeader extends Component {
             <div className="col-1"></div>
           </div>
         </div>
-        <div className="home-header-banner d-flex flex-column align-items-center dark-overlay">
-          <div className="content-up d-flex flex-column align-items-center">
-            <div className="title1">
-              <FormattedMessage id="banner.title1" />
+        {this.props.showBanner && this.props.showBanner === true && (
+          <div className="home-header-banner d-flex flex-column align-items-center dark-overlay">
+            <div className="content-up d-flex flex-column align-items-center">
+              <div className="title1">
+                <FormattedMessage id="banner.title1" />
+              </div>
+              <div className="title2">
+                <FormattedMessage id="banner.title2" />
+              </div>
+              <div className="search-bar d-flex justify-content-center align-items-center mt-3">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  placeholder="Tìm chuyên khoa khám bệnh"
+                ></input>
+              </div>
             </div>
-            <div className="title2">
-              <FormattedMessage id="banner.title2" />
-            </div>
-            <div className="search-bar d-flex justify-content-center align-items-center mt-3">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="text"
-                placeholder="Tìm chuyên khoa khám bệnh"
-              ></input>
+            <div className="content-down">
+              <div className="options d-flex justify-content-center align-items-center text-center">
+                <div className="col-1"></div>
+                <div className="option-1 col-1 d-flex justify-content-center align-items-center flex-column">
+                  <div className="option-1-logo"></div>
+                  <div className="option-1-title mt-3 ">
+                    <FormattedMessage id="banner.option-1-title" />
+                  </div>
+                </div>
+                <div className="option-2 col-1 d-flex justify-content-center align-items-center flex-column">
+                  <div className="option-2-logo"></div>
+                  <div className="option-2-title mt-3">
+                    <FormattedMessage id="banner.option-2-title" />
+                  </div>
+                </div>
+                <div className="option-3 col-1 d-flex justify-content-center align-items-center flex-column">
+                  <div className="option-3-logo"></div>
+                  <div className="option-3-title mt-3">
+                    <FormattedMessage id="banner.option-3-title" />
+                  </div>
+                </div>
+                <div className="option-4 col-1 d-flex justify-content-center align-items-center flex-column">
+                  <div className="option-4-logo"></div>
+                  <div className="option-4-title mt-3 ">
+                    <FormattedMessage id="banner.option-4-title" />
+                  </div>
+                </div>
+                <div className="option-5 col-1 d-flex justify-content-center align-items-center flex-column">
+                  <div className="option-5-logo"></div>
+                  <div className="option-5-title mt-3 ">
+                    <FormattedMessage id="banner.option-5-title" />
+                  </div>
+                </div>
+                <div className="option-6 col-1 d-flex justify-content-center align-items-center flex-column">
+                  <div className="option-6-logo"></div>
+                  <div className="option-6-title mt-3 ">
+                    <FormattedMessage id="banner.option-6-title" />
+                  </div>
+                </div>
+                <div className="col-1"></div>
+              </div>
             </div>
           </div>
-          <div className="content-down">
-            <div className="options d-flex justify-content-center align-items-center text-center">
-              <div className="col-1"></div>
-              <div className="option-1 col-1 d-flex justify-content-center align-items-center flex-column">
-                <div className="option-1-logo"></div>
-                <div className="option-1-title mt-3 ">
-                  <FormattedMessage id="banner.option-1-title" />
-                </div>
-              </div>
-              <div className="option-2 col-1 d-flex justify-content-center align-items-center flex-column">
-                <div className="option-2-logo"></div>
-                <div className="option-2-title mt-3">
-                  <FormattedMessage id="banner.option-2-title" />
-                </div>
-              </div>
-              <div className="option-3 col-1 d-flex justify-content-center align-items-center flex-column">
-                <div className="option-3-logo"></div>
-                <div className="option-3-title mt-3">
-                  <FormattedMessage id="banner.option-3-title" />
-                </div>
-              </div>
-              <div className="option-4 col-1 d-flex justify-content-center align-items-center flex-column">
-                <div className="option-4-logo"></div>
-                <div className="option-4-title mt-3 ">
-                  <FormattedMessage id="banner.option-4-title" />
-                </div>
-              </div>
-              <div className="option-5 col-1 d-flex justify-content-center align-items-center flex-column">
-                <div className="option-5-logo"></div>
-                <div className="option-5-title mt-3 ">
-                  <FormattedMessage id="banner.option-5-title" />
-                </div>
-              </div>
-              <div className="option-6 col-1 d-flex justify-content-center align-items-center flex-column">
-                <div className="option-6-logo"></div>
-                <div className="option-6-title mt-3 ">
-                  <FormattedMessage id="banner.option-6-title" />
-                </div>
-              </div>
-              <div className="col-1"></div>
-            </div>
-          </div>
-        </div>
+        )}
       </React.Fragment>
     );
   }

@@ -90,11 +90,19 @@ const adminReducer = (state = initialState, action) => {
     // get doctor select
     case actionTypes.FETCH_DOCTOR_SELECT_SUCCESS:
       state.doctorSelect = action.doctorSelect;
-      console.log("check action doctorSelect", state.doctorSelect);
       return {
         ...state,
       };
     case actionTypes.FETCH_DOCTOR_SELECT_FAILED:
+      return {
+        ...state,
+      };
+    // post info doctor
+    case actionTypes.CREATE_DOCTOR_INFO_SUCCESS:
+      return {
+        ...state,
+      };
+    case actionTypes.CREATE_DOCTOR_INFO_FAILED:
       return {
         ...state,
       };

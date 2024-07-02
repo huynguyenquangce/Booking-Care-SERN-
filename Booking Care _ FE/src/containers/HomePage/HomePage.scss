@@ -68,7 +68,11 @@
             }
             .img-customize {
                 height: 300px;
+                &:hover {
+                    color: rgb(79, 79, 180) !important;
+                }
                 img {
+                    cursor: pointer !important;
                     height: 100%;
                     width: 100%;
                     object-fit: cover;
