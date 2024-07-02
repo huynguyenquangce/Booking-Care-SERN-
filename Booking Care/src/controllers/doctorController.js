@@ -2,6 +2,8 @@ import db from "../models";
 import {
   getTopDoctorService,
   getDoctorSelectService,
+  PostDoctorInfoService,
+  getDoctorInfoService,
 } from "../services/doctorServices";
 let handleGetTopDoctor = async (req, res) => {
   let limit = req.query.limit;
@@ -39,7 +41,44 @@ let handleGetDoctorSelect = async (req, res) => {
     });
   }
 };
+
+let handlePostDoctorInfo = async (req, res) => {
+  try {
+    console.log(req.body);
+    let response = await PostDoctorInfoService(req.body);
+    return res.status(200).json({
+      errCode: response.errCode,
+      errMessage: response.errMessage,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let handleGetDoctorInfo = async (req, res) => {
+  try {
+    let response = await getDoctorInfoService(req.query.id);
+    return res.status(200).json({
+      errCode: response.errCode,
+      errMessage: response.errMessage,
+      data: response.data,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
 module.exports = {
   handleGetTopDoctor: handleGetTopDoctor,
   handleGetDoctorSelect: handleGetDoctorSelect,
+  handlePostDoctorInfo: handlePostDoctorInfo,
+  handleGetDoctorInfo: handleGetDoctorInfo,
 };

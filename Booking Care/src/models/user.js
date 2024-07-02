@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "keyMap",
         as: "genderData", // Alias for the table
       });
+
+      Users.hasOne(models.MarkDown, {
+        foreignKey: "doctorId",
+      });
     }
   }
   Users.init(
