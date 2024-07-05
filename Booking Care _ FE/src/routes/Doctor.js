@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
-import UserManage from "../containers/System/UserManage";
+import ManageSchedule from "../containers/System/Doctor/ManageSchedule";
 // import UserReduxModal from "../containers/System/Admin/UserReduxModal";
 import Header from "../containers/Header/Header";
 import UserRedux from "../containers/System/Admin/UserRedux";
 import ManageDoctor from "../containers/System/Admin/ManageDoctor";
-import ManageSchedule from "../containers/System/Doctor/ManageSchedule";
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
@@ -16,9 +15,6 @@ class System extends Component {
         <div className="system-container">
           <div className="system-list">
             <Switch>
-              <Route path="/system/user-manage" component={UserManage} />
-              <Route path="/system/user-redux" component={UserRedux} />
-              <Route path="/system/doctor-manage" component={ManageDoctor} />
               <Route
                 path="/doctor/manage-schedule"
                 component={ManageSchedule}

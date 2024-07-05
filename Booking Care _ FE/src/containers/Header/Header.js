@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
-import { adminMenu } from "./menuApp";
+import { adminMenu, doctorMenu } from "./menuApp";
 import "./Header.scss";
 import { LANGUAGE } from "../../utils/constant";
 class Header extends Component {
   handleChangeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
+  componentDidMount() {
+    console.log("Check state", this.props.userInfo);
+  }
   render() {
     const { processLogout } = this.props;
     let userName = this.props.userInfo;
@@ -17,7 +20,13 @@ class Header extends Component {
       <div className="header-container">
         {/* thanh navigator */}
         <div className="header-tabs-container">
-          <Navigator menus={adminMenu} />
+          <Navigator
+            menus={
+              userName && userName.roleid && userName.roleid === "R2"
+                ? doctorMenu
+                : adminMenu
+            }
+          />
         </div>
         <div className="languages">
           <span className="welcome-user me-4">

@@ -43,6 +43,10 @@ const postDoctorInfo = (inputData) => {
   return axios.post("/api/post-info-doctor", inputData);
 };
 
+const getDoctorInfo = (inputId) => {
+  return axios.get(`/api/get-doctor-info?id=${inputId}`);
+};
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -53,4 +57,5 @@ export {
   getTopDoctor,
   getDoctorSelect,
   postDoctorInfo,
+  getDoctorInfo,
 };

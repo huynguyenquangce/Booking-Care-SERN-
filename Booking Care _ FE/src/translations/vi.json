@@ -64,6 +64,12 @@
             "manage-specialty": "Quản lí chuyên khoa",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lí cẩm nang"
+        },
+        "doctor":
+        {
+            "title": "Bác sĩ",
+            "manage-schedule": "Quản lí kế hoạch khám bệnh",
+            "schedule": "Lịch khám bệnh bác sĩ"
         }
     },
 
@@ -90,6 +96,11 @@
         "info-title": "Tạo thông tin thêm cho bác sĩ",
         "select":"Chọn bác sĩ",
         "introduce-info":"Thông tin giới thiệu"
+    },
+    "manage-schedule-doctor": 
+    {
+      "title": "Quản lí lịch khám bệnh bác sĩ",
+      "doctor": "Bác sĩ"
     }
 
 }

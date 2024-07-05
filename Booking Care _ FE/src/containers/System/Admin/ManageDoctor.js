@@ -7,7 +7,8 @@ import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
 import { LANGUAGE } from "../../../utils/constant";
 import * as actions from "../../../store/actions";
-
+import { getDoctorInfo } from "../../../services/userService";
+import "./ManageDoctor.scss";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 // const options = [
 //   { value: "chocolate", label: "Chocolate" },
@@ -23,6 +24,7 @@ class ManageDoctor extends Component {
       selectedOption: "",
       description: "",
       options: [],
+      dataExist: false,
     };
   }
 
@@ -53,7 +55,7 @@ class ManageDoctor extends Component {
   };
 
   saveContentMarkDown = () => {
-    console.log("check state", this.state);
+    let { dataExist } = this.state;
     this.setState({
       contentMarkdown: "",
       contentHTML: "",
@@ -65,10 +67,35 @@ class ManageDoctor extends Component {
       contentMarkDown: this.state.contentMarkdown,
       contentHTML: this.state.contentHTML,
       description: this.state.description,
+      actions: dataExist === false ? "CREATE" : "UPDATE",
     });
   };
-  handleChange = (selectedOption) => {
+  handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedOption }, () => console.log(`Option selected:`));
+    let dataDoctor = await getDoctorInfo(selectedOption.value);
+    console.log("check state 1", dataDoctor);
+    if (
+      dataDoctor &&
+      dataDoctor.errCode === 0 &&
+      dataDoctor.data &&
+      dataDoctor.data.MarkDown &&
+      dataDoctor.data.MarkDown.contentHTML
+    ) {
+      this.setState({
+        dataExist: true,
+        contentMarkdown: dataDoctor.data.MarkDown.contentMarkDown,
+        contentHTML: dataDoctor.data.MarkDown.contentHTML,
+        description: dataDoctor.data.MarkDown.description,
+      });
+    } else {
+      this.setState({
+        dataExist: false,
+        contentMarkdown: "",
+        contentHTML: "",
+        description: "",
+      });
+    }
+    console.log("check state", this.state);
   };
   handleChangeTextArea = (event) => {
     this.setState({
@@ -93,7 +120,7 @@ class ManageDoctor extends Component {
   render() {
     return (
       <div className="markdown-editor-container">
-        <div className="markdown-editor-title text-center m-5 h2 text-primary">
+        <div className="markdown-editor-title text-center m-5 h3 text-primary fw-bold">
           <FormattedMessage id="doctor.info-title"></FormattedMessage>
         </div>
         <label className="ms-2 text-secondary h4">
@@ -104,7 +131,7 @@ class ManageDoctor extends Component {
           <div className="col-3 select-doctor">
             <Select
               value={this.state.selectedOption}
-              onChange={this.handleChange}
+              onChange={this.handleChangeSelect}
               options={this.state.options}
             />
           </div>
@@ -130,7 +157,7 @@ class ManageDoctor extends Component {
           className="btn btn-primary p-2 m-3 float-end"
           onClick={() => this.saveContentMarkDown()}
         >
-          Lưu thông tin
+          {this.state.dataExist == true ? "Sửa thông tin" : "Lưu thông tin"}
         </div>
       </div>
     );

@@ -6,6 +6,7 @@ const initialState = {
   allUser: [],
   doctor: [],
   doctorSelect: [],
+  doctorInfo: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -103,6 +104,17 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       };
     case actionTypes.CREATE_DOCTOR_INFO_FAILED:
+      return {
+        ...state,
+      };
+
+    // get doctor info
+    case actionTypes.GET_DOCTOR_INFO_SUCCESS:
+      state.doctorInfo = action.doctorInfo;
+      return {
+        ...state,
+      };
+    case actionTypes.GET_DOCTOR_INFO_FAILED:
       return {
         ...state,
       };

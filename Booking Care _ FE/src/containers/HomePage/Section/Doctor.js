@@ -8,6 +8,7 @@ import { LANGUAGE } from "../../../utils/constant";
 import * as actions from "../../../store/actions";
 import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router";
+
 class Doctor extends Component {
   constructor(props) {
     super(props);

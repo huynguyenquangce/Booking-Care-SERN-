@@ -62,7 +62,12 @@
             "manage-specialty": "Specialty Manage",
             "handbook": "Handbook",
             "manage-handbook": "Handbook Manage"
-        }
+        },
+        "doctor": {
+            "title": "Doctor",
+            "manage-schedule": "Manage medical examination schedule",
+            "schedule": "Medical examination schedule"
+          }
     },
 
     
@@ -87,5 +92,10 @@
         "info-title": "Create additional information for the doctor",
         "select": "Select doctor",
         "introduce-info": "Introduction information"
+      },
+      "manage-schedule-doctor": 
+      {
+        "title": "Manage doctor schedule",
+         "doctor": "Doctor"
       }
 }

@@ -8,6 +8,7 @@ import {
   getTopDoctor,
   getDoctorSelect,
   postDoctorInfo,
+  getDoctorInfo,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -243,8 +244,13 @@ export const createDoctorInfoStart = (inputData) => {
     try {
       let res = await postDoctorInfo(inputData);
       if (res && res.errCode === 0) {
-        toast.success("Create Info Doctor Success");
-        dispatch(createDoctorInfoSuccess());
+        if (inputData.actions === "CREATE") {
+          toast.success("Create Info Doctor Success");
+          dispatch(createDoctorInfoSuccess());
+        } else {
+          toast.success("Update Info Doctor Success");
+          dispatch(createDoctorInfoSuccess());
+        }
       } else {
         dispatch(createDoctorInfoFailed());
       }
@@ -261,4 +267,30 @@ export const createDoctorInfoSuccess = () => ({
 
 export const createDoctorInfoFailed = () => ({
   type: actionTypes.CREATE_DOCTOR_INFO_FAILED,
+});
+
+///////getDoctorInfo//////////
+export const getDoctorInfoStart = (inputData) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorInfo(inputData);
+      if (res && res.errCode === 0) {
+        dispatch(getDoctorInfoSuccess(res.data));
+      } else {
+        dispatch(getDoctorInfoFailed());
+      }
+    } catch (error) {
+      dispatch(getDoctorInfoFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const getDoctorInfoSuccess = (inputData) => ({
+  type: actionTypes.GET_DOCTOR_INFO_SUCCESS,
+  doctorInfo: inputData,
+});
+
+export const getDoctorInfoFailed = () => ({
+  type: actionTypes.GET_DOCTOR_INFO_FAILED,
 });

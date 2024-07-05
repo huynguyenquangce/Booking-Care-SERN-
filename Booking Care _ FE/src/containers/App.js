@@ -16,6 +16,7 @@ import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePages.js";
+import Doctor from "../routes/Doctor.js";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import CustomScrollbars from "../components/CustomScrollbars.js";
 class App extends Component {
@@ -36,7 +37,8 @@ class App extends Component {
   componentDidMount() {
     this.handlePersistorState();
   }
-
+  // File này chia route sau khi người dùng login, tất cả người dùng có quyền vào trang LOGIN cũng như
+  // HOME, HOMEPAGE, DETAILS DOCTOR, riêng admin có quyền vào route SYSTEM
   render() {
     return (
       <Fragment>
@@ -51,14 +53,15 @@ class App extends Component {
                     component={userIsNotAuthenticated(Login)}
                   />
                   <Route
+                    path={path.DOCTOR}
+                    component={userIsAuthenticated(Doctor)}
+                  />
+                  <Route
                     path={path.SYSTEM}
                     component={userIsAuthenticated(System)}
                   />
                   <Route path={path.HOMEPAGE} component={HomePage} />
-                  <Route
-                    path="/detail-doctor/id=:id"
-                    component={DetailsDoctor}
-                  />
+                  <Route path={path.DETAIL_DOCTOR} component={DetailsDoctor} />
                 </CustomScrollbars>
               </Switch>
             </div>
