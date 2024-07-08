@@ -53,25 +53,94 @@ let getDoctorSelectService = () => {
   });
 };
 
+// let PostDoctorInfoService = (data) => {
+//   console.log("Check data", data.actions);
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       if (!data || !data.action) {
+//         resolve({
+//           errCode: 1,
+//           errMessage: "Missing Data",
+//         });
+//       } else {
+//         if (data.actions === "CREATE") {
+//           await db.MarkDown.create({
+//             contentHTML: data.contentHTML,
+//             contentMarkDown: data.contentMarkDown,
+//             description: data.description,
+//             doctorId: data.doctorId,
+//           });
+//           resolve({
+//             errCode: 0,
+//             errMessage: "Create OK",
+//           });
+//         }
+//       }
+//       // contentHTML: data.contentHTML,
+//       // contentMarkDown: data.contentMarkDown,
+//       // description: data.description,
+//       // doctorId: data.doctorId,
+//       else if(data.actions === "UPDATE"){
+//         await db.MarkDown.findOne({
+//           where: { doctorId: data.doctorId },
+//         });
+//         resolve({
+//           errCode: 0,
+//           errMessage: "Update OK",
+//         });
+//       }
+//       }
+//     } catch (error) {
+//       reject(error);
+//     }
+//   });
+// };
+
 let PostDoctorInfoService = (data) => {
+  console.log("Check data", data.actions);
   return new Promise(async (resolve, reject) => {
     try {
-      if (!data) {
+      if (!data || !data.actions) {
+        // Corrected 'action' to 'actions'
         resolve({
           errCode: 1,
           errMessage: "Missing Data",
         });
       } else {
-        await db.MarkDown.create({
-          contentHTML: data.contentHTML,
-          contentMarkDown: data.contentMarkDown,
-          description: data.description,
-          doctorId: data.doctorId,
-        });
-        resolve({
-          errCode: 0,
-          errMessage: "OK",
-        });
+        if (data.actions === "CREATE") {
+          await db.MarkDown.create({
+            contentHTML: data.contentHTML,
+            contentMarkDown: data.contentMarkDown,
+            description: data.description,
+            doctorId: data.doctorId,
+          });
+          resolve({
+            errCode: 0,
+            errMessage: "Create OK",
+          });
+        } else if (data.actions === "UPDATE") {
+          // Moved the else if inside the main if-else block
+          let doctor = await db.MarkDown.findOne({
+            where: { doctorId: data.doctorId },
+            raw: false,
+          });
+          if (doctor) {
+            // Updating the fields manually
+            doctor.contentHTML = data.contentHTML;
+            doctor.contentMarkDown = data.contentMarkDown;
+            doctor.description = data.description;
+            await doctor.save(); // Save the changes
+            resolve({
+              errCode: 0,
+              errMessage: "Update OK",
+            });
+          } else {
+            resolve({
+              errCode: 2,
+              errMessage: "Doctor not found",
+            });
+          }
+        }
       }
     } catch (error) {
       reject(error);
@@ -93,6 +162,11 @@ let getDoctorInfoService = (inputId) => {
           where: { id: inputId },
           attributes: { exclude: ["password"] },
           include: [
+            {
+              model: db.Allcode,
+              as: "positionData",
+              attributes: ["valueEn", "valueVi"],
+            },
             {
               model: db.MarkDown,
               attributes: [

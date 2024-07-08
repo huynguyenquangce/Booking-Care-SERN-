@@ -44,7 +44,7 @@ let handleGetDoctorSelect = async (req, res) => {
 
 let handlePostDoctorInfo = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("check body", req.body);
     let response = await PostDoctorInfoService(req.body);
     return res.status(200).json({
       errCode: response.errCode,
