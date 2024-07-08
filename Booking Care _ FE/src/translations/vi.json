@@ -10,7 +10,14 @@
         "title4": "Gói khám",
         "title4-des":"Khám bệnh tổng quát",
         "support": "Hỗ trợ",
-        "welcome": "Xin chào"
+        "welcome": "Xin chào",
+
+        "doctor_section":
+        {
+            "icon-title": "LỊCH KHÁM"
+        }
+
+
     },
 
     "banner":
@@ -100,7 +107,10 @@
     "manage-schedule-doctor": 
     {
       "title": "Quản lí lịch khám bệnh bác sĩ",
-      "doctor": "Bác sĩ"
+      "doctor": "Bác sĩ",
+      "choose": "Chọn lịch"
     }
+
+
 
 }

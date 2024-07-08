@@ -7,6 +7,7 @@ const initialState = {
   doctor: [],
   doctorSelect: [],
   doctorInfo: [],
+  arrTime: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -115,6 +116,25 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       };
     case actionTypes.GET_DOCTOR_INFO_FAILED:
+      return {
+        ...state,
+      };
+    // get time from allcode
+    case actionTypes.FETCH_TIME_DOCTOR_SUCCESS:
+      state.arrTime = action.timeData;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_TIME_DOCTOR_FAILED:
+      return {
+        ...state,
+      };
+    // get data from schedule
+    case actionTypes.FETCH_SCHEDULE_DOCTOR_SUCCESS:
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_SCHEDULE_DOCTOR_FAILED:
       return {
         ...state,
       };

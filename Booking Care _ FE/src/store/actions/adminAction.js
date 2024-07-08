@@ -9,6 +9,7 @@ import {
   getDoctorSelect,
   postDoctorInfo,
   getDoctorInfo,
+  getDoctorSchedule,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -293,4 +294,56 @@ export const getDoctorInfoSuccess = (inputData) => ({
 
 export const getDoctorInfoFailed = () => ({
   type: actionTypes.GET_DOCTOR_INFO_FAILED,
+});
+
+// fetch Time from allcode
+export const fetchTimeStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeData("TIME");
+      if (res && res.errCode === 0) {
+        dispatch(fetchTimeSuccess(res.data));
+      } else {
+        dispatch(fetchTimeFailed());
+      }
+    } catch (error) {
+      dispatch(fetchTimeFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const fetchTimeSuccess = (inputData) => ({
+  type: actionTypes.FETCH_TIME_DOCTOR_SUCCESS,
+  timeData: inputData,
+});
+
+export const fetchTimeFailed = () => ({
+  type: actionTypes.FETCH_TIME_DOCTOR_FAILED,
+});
+
+// fetch Schedule Doctor from Schedule table
+export const fetchScheduleStart = (inputData) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorSchedule(inputData);
+      if (res && res.errCode === 0) {
+        dispatch(fetchTimeSuccess(res.data));
+      } else {
+        dispatch(fetchTimeFailed());
+      }
+    } catch (error) {
+      dispatch(fetchTimeFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const fetchScheduleSuccess = (inputData) => ({
+  type: actionTypes.FETCH_TIME_DOCTOR_SUCCESS,
+  scheduleData: inputData,
+});
+
+export const fetchScheduleFailed = () => ({
+  type: actionTypes.FETCH_TIME_DOCTOR_FAILED,
 });

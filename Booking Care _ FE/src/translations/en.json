@@ -9,7 +9,12 @@
   "title4": "Check-up Packages",
   "title4-des": "General health check-up",
   "support": "Support",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  
+  "doctor_section":
+  {
+      "icon-title": "CARE SCHEDULE"
+  }
 },
 "banner": {
   "title1": "Healthcare Platform",
@@ -96,6 +101,7 @@
       "manage-schedule-doctor": 
       {
         "title": "Manage doctor schedule",
-         "doctor": "Doctor"
+         "doctor": "Doctor",
+         "choose": "Choose schedule"
       }
 }

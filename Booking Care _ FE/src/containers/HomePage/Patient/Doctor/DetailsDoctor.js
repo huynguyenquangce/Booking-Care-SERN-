@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import HomeHeader from "../../HomeHeader";
 import * as actions from "../../../../store/actions";
 import { LANGUAGE } from "../../../../utils";
+import DoctorSchedule from "./DoctorSchedule";
 class DetailsDoctor extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +52,9 @@ class DetailsDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor mt-5">
+            <DoctorSchedule></DoctorSchedule>
+          </div>
           <div className="doctor-main-info">
             <div
               className="doctor-main-info-content mt-3"

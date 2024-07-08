@@ -56,6 +56,11 @@ class Login extends Component {
       isShowPassword: !this.state.isShowPassword,
     });
   };
+  handleOnKeyEnter = (event) => {
+    if (event.key === "Enter") {
+      this.handleOnClickLogin();
+    }
+  };
   render() {
     return (
       <div className="bg-login">
@@ -82,6 +87,7 @@ class Login extends Component {
                     placeholder="Enter password"
                     value={this.state.password}
                     onChange={(event) => this.handleOnChangePassword(event)}
+                    onKeyDown={(event) => this.handleOnKeyEnter(event)}
                   ></input>
                   <span onClick={() => this.handleShowHidePassword()}>
                     <i
