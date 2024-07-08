@@ -29,6 +29,14 @@ let initWebRoutes = (app) => {
   );
   router.post("/api/post-info-doctor", doctorController.handlePostDoctorInfo);
   router.get("/api/get-doctor-info", doctorController.handleGetDoctorInfo);
+  router.post(
+    "/api/create-doctor-schedule",
+    doctorController.handleCreateDoctorSchedule
+  );
+  router.get(
+    "/api/get-doctor-schedule",
+    doctorController.handleGetDoctorSchedule
+  );
   return app.use("/", router);
 };
 

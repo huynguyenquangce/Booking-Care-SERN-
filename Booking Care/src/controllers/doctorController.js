@@ -4,6 +4,8 @@ import {
   getDoctorSelectService,
   PostDoctorInfoService,
   getDoctorInfoService,
+  createDoctorScheduleService,
+  getDoctorScheduleService,
 } from "../services/doctorServices";
 let handleGetTopDoctor = async (req, res) => {
   let limit = req.query.limit;
@@ -75,10 +77,52 @@ let handleGetDoctorInfo = async (req, res) => {
     });
   }
 };
+let handleCreateDoctorSchedule = async (req, res) => {
+  try {
+    console.log("check body", req.body);
+    let response = await createDoctorScheduleService(req.body);
+    return res.status(200).json({
+      errCode: response.errCode,
+      errMessage: response.errMessage,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
 
+let handleGetDoctorSchedule = async (req, res) => {
+  try {
+    console.log("check body", req.body);
+    if (!req.body.id && !req.body.date) {
+      return res.status(200).json({
+        errCode: 1,
+        errMessage: "Missing Input Data",
+      });
+    } else {
+      let response = await getDoctorScheduleService(req.body);
+      return res.status(200).json({
+        errCode: response.errCode,
+        errMessage: response.errMessage,
+        data: response.data,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
 module.exports = {
   handleGetTopDoctor: handleGetTopDoctor,
   handleGetDoctorSelect: handleGetDoctorSelect,
   handlePostDoctorInfo: handlePostDoctorInfo,
   handleGetDoctorInfo: handleGetDoctorInfo,
+  handleCreateDoctorSchedule: handleCreateDoctorSchedule,
+  handleGetDoctorSchedule: handleGetDoctorSchedule,
 };

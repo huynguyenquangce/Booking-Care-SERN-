@@ -1,6 +1,7 @@
 import { where } from "sequelize";
 import db from "../models";
 import { raw } from "body-parser";
+require("dotenv").config();
 let getTopDoctorService = (limitInput) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -52,49 +53,6 @@ let getDoctorSelectService = () => {
     }
   });
 };
-
-// let PostDoctorInfoService = (data) => {
-//   console.log("Check data", data.actions);
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       if (!data || !data.action) {
-//         resolve({
-//           errCode: 1,
-//           errMessage: "Missing Data",
-//         });
-//       } else {
-//         if (data.actions === "CREATE") {
-//           await db.MarkDown.create({
-//             contentHTML: data.contentHTML,
-//             contentMarkDown: data.contentMarkDown,
-//             description: data.description,
-//             doctorId: data.doctorId,
-//           });
-//           resolve({
-//             errCode: 0,
-//             errMessage: "Create OK",
-//           });
-//         }
-//       }
-//       // contentHTML: data.contentHTML,
-//       // contentMarkDown: data.contentMarkDown,
-//       // description: data.description,
-//       // doctorId: data.doctorId,
-//       else if(data.actions === "UPDATE"){
-//         await db.MarkDown.findOne({
-//           where: { doctorId: data.doctorId },
-//         });
-//         resolve({
-//           errCode: 0,
-//           errMessage: "Update OK",
-//         });
-//       }
-//       }
-//     } catch (error) {
-//       reject(error);
-//     }
-//   });
-// };
 
 let PostDoctorInfoService = (data) => {
   console.log("Check data", data.actions);
@@ -194,9 +152,78 @@ let getDoctorInfoService = (inputId) => {
     }
   });
 };
+let createDoctorScheduleService = (inputData) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!inputData && !inputData.data) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing Data",
+        });
+      } else {
+        if (inputData.data && inputData.data.length > 0) {
+          inputData.data.map((item) => {
+            item.maxNumber = process.env.MAX_NUMBER;
+            return item;
+          });
+          // Process data to insert different with two record in Schedule table
+          let existData = await db.Schedule.findAll({
+            where: {
+              doctorId: inputData.data[0].doctorId,
+              date: inputData.data[0].date,
+              timeType: inputData.data.map((data) => data.timeType),
+            },
+          });
+          let existingTimeTypes = new Set(
+            existData.map((data) => data.timeType)
+          );
+
+          // Step 3: Filter out the existing data from the input data
+          let newData = inputData.data.filter(
+            (data) => !existingTimeTypes.has(data.timeType)
+          );
+          if (newData.length > 0) {
+            await db.Schedule.bulkCreate(newData);
+            resolve({
+              errCode: 1,
+              errMessage: "OK",
+            });
+          }
+        }
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+let getDoctorScheduleService = (inputData) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let inputId = inputData.id;
+      let inputDate = inputData.date;
+      let respone = await db.Schedule.findAll({
+        where: {
+          doctorId: inputId,
+          date: inputDate,
+        },
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      });
+      resolve({
+        errCode: 0,
+        errMessage: "OK",
+        data: respone,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   getTopDoctorService: getTopDoctorService,
   getDoctorSelectService: getDoctorSelectService,
   PostDoctorInfoService: PostDoctorInfoService,
   getDoctorInfoService: getDoctorInfoService,
+  createDoctorScheduleService: createDoctorScheduleService,
+  getDoctorScheduleService: getDoctorScheduleService,
 };
