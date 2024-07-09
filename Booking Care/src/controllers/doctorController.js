@@ -96,14 +96,14 @@ let handleCreateDoctorSchedule = async (req, res) => {
 
 let handleGetDoctorSchedule = async (req, res) => {
   try {
-    console.log("check body", req.body);
-    if (!req.body.id && !req.body.date) {
+    console.log("check query", req.query);
+    if (!req.query.id && !req.query.date) {
       return res.status(200).json({
         errCode: 1,
         errMessage: "Missing Input Data",
       });
     } else {
-      let response = await getDoctorScheduleService(req.body);
+      let response = await getDoctorScheduleService(req.query);
       return res.status(200).json({
         errCode: response.errCode,
         errMessage: response.errMessage,

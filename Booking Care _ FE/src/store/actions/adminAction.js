@@ -324,26 +324,28 @@ export const fetchTimeFailed = () => ({
 
 // fetch Schedule Doctor from Schedule table
 export const fetchScheduleStart = (inputData) => {
+  // console.log("123", inputData);
   return async (dispatch, getState) => {
     try {
       let res = await getDoctorSchedule(inputData);
+      console.log("check respone", res);
       if (res && res.errCode === 0) {
-        dispatch(fetchTimeSuccess(res.data));
+        dispatch(fetchScheduleSuccess(res.data));
       } else {
-        dispatch(fetchTimeFailed());
+        dispatch(fetchScheduleFailed());
       }
     } catch (error) {
-      dispatch(fetchTimeFailed());
+      dispatch(fetchScheduleFailed());
       console.log(error);
     }
   };
 };
 
-export const fetchScheduleSuccess = (inputData) => ({
-  type: actionTypes.FETCH_TIME_DOCTOR_SUCCESS,
-  scheduleData: inputData,
+export const fetchScheduleSuccess = (input) => ({
+  type: actionTypes.FETCH_SCHEDULE_DOCTOR_SUCCESS,
+  scheduleData: input,
 });
 
 export const fetchScheduleFailed = () => ({
-  type: actionTypes.FETCH_TIME_DOCTOR_FAILED,
+  type: actionTypes.FETCH_SCHEDULE_DOCTOR_FAILED,
 });

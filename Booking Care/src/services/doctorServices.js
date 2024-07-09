@@ -209,6 +209,7 @@ let getDoctorScheduleService = (inputData) => {
         },
         attributes: { exclude: ["createdAt", "updatedAt"] },
       });
+      console.log(respone);
       resolve({
         errCode: 0,
         errMessage: "OK",

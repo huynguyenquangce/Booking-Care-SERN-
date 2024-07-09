@@ -8,7 +8,6 @@ import * as actions from "../../../../store/actions";
 import { LANGUAGE } from "../../../../utils";
 import Select from "react-select";
 import moment from "moment";
-
 const generateDateOptions = () => {
   const today = moment();
   const options = [];
@@ -25,9 +24,13 @@ const generateDateOptions = () => {
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
+    const { location } = this.props;
+    const match = location.pathname.match(/id=(\d+)/);
+    const id = match ? match[1] : null;
     this.state = {
       selectOption: {},
       options: generateDateOptions(),
+      idFromURL: id,
     };
   }
 
@@ -37,8 +40,23 @@ class DoctorSchedule extends Component {
     });
     console.log("check selected option", this.state.selectOption);
   };
-  componentDidMount() {}
+  componentDidMount() {
+    // this.props.getDoctorSchedule({
+    //   id: this.state.idFromURL,
+    //   date: this.state.selectOption ? this.state.selectOption.value : null,
+    // });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectOption !== this.state.selectOption) {
+      this.props.getDoctorSchedule({
+        id: this.state.idFromURL,
+        date: this.state.selectOption.value,
+      });
+    }
+  }
   render() {
+    console.log("checking props 69", this.props.arrScheduleRedux);
     return (
       <>
         <div className="schedule-container ms-5">
@@ -64,11 +82,15 @@ class DoctorSchedule extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    arrScheduleRedux: state.admin.arrSchedule,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getDoctorSchedule: (inputData) =>
+      dispatch(actions.fetchScheduleStart(inputData)),
+  };
 };
 
 export default withRouter(

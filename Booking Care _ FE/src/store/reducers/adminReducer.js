@@ -8,6 +8,7 @@ const initialState = {
   doctorSelect: [],
   doctorInfo: [],
   arrTime: [],
+  arrSchedule: {},
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -131,6 +132,8 @@ const adminReducer = (state = initialState, action) => {
       };
     // get data from schedule
     case actionTypes.FETCH_SCHEDULE_DOCTOR_SUCCESS:
+      console.log("check schedule", action.scheduleData);
+      state.arrSchedule = action.scheduleData;
       return {
         ...state,
       };
