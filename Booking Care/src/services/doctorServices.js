@@ -138,7 +138,10 @@ let getDoctorInfoService = (inputId) => {
           raw: true,
           nest: true,
         });
-        doctorInfo.image = new Buffer(doctorInfo.image, "base64").toString(
+        // doctorInfo.image = new Buffer(doctorInfo.image, "base64").toString(
+        //   "binary"
+        // );
+        doctorInfo.image = Buffer.from(doctorInfo.image, "base64").toString(
           "binary"
         );
         resolve({
@@ -185,7 +188,7 @@ let createDoctorScheduleService = (inputData) => {
           if (newData.length > 0) {
             await db.Schedule.bulkCreate(newData);
             resolve({
-              errCode: 1,
+              errCode: 0,
               errMessage: "OK",
             });
           }
@@ -208,6 +211,15 @@ let getDoctorScheduleService = (inputData) => {
           date: inputDate,
         },
         attributes: { exclude: ["createdAt", "updatedAt"] },
+        include: [
+          {
+            model: db.Allcode,
+            as: "timeTypeData",
+            attributes: ["valueEn", "valueVi"],
+          },
+        ],
+        raw: true,
+        nest: true,
       });
       console.log(respone);
       resolve({

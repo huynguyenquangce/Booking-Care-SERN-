@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "gender", // Column name of associated table
         as: "genderData", // Alias for the table
       });
+      Allcode.hasMany(models.Schedule, {
+        foreignKey: "timeType", // Column name of associated table
+        as: "timeTypeData", // Alias for the table
+      });
     }
   }
   Allcode.init(
