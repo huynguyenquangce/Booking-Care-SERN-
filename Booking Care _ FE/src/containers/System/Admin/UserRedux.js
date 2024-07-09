@@ -134,7 +134,7 @@ class UserManage extends Component {
                         <i className="fa-solid fa-trash">Delete</i>
                       </button>
                       <button
-                        className="mx-2"
+                        className="mx-2 btn-primary"
                         onClick={() => this.handleEditUser(item)}
                       >
                         <i className="fa-solid fa-user-pen">Edit</i>

@@ -9,7 +9,10 @@
     max-width: 90% !important;
     .modal-content {
         height: 80vh;
+
         .modal-header {
+            display: flex !important;
+            justify-content: space-between;
             button {
                 width: 30px !important;
                 span {

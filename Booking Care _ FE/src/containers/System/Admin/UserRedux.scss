@@ -21,5 +21,13 @@
             background-color: #04aa6d;
             color: white;
         }
+        td {
+            .btn-danger {
+                background-color: lightcoral;
+            }
+            .btn-primary {
+                background-color: rgb(134, 195, 195);
+            }
+        }
     }
 }

@@ -1,9 +1,34 @@
-.schedule-container {
-    .schedule-select {
-    }
-    .schedule-icon {
-        .icon-calendar {
-            font-size: 20px;
+.content-left {
+    border-right: 1px solid gainsboro !important;
+    .schedule-container {
+        height: 300px;
+        .schedule-select {
+            .css-yk16xz-control {
+                .css-1uccc91-singleValue {
+                    color: #33b0e3;
+                }
+            }
+        }
+        .schedule-icon {
+            .icon-calendar {
+                font-size: 20px;
+            }
+        }
+        .schedule-zone {
+            // height: 200px;
+            gap: 20px;
+            flex-wrap: wrap;
+            .btn-schedule {
+                padding: 15px 8px !important;
+                background-color: #eeeeee;
+                &:hover {
+                    border: 2px solid #1a8cb9;
+                }
+            }
+        }
+        .sub-text {
+            font-size: 15px;
+            color: rgb(90, 180, 183);
         }
     }
 }

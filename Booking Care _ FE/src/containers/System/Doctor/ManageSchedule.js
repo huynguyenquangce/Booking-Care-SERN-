@@ -124,9 +124,14 @@ class ManagSchedule extends Component {
       }
     }
     console.log("formatDate", result);
-    await postDoctorSchedule({
+    let res = await postDoctorSchedule({
       data: result,
     });
+    if (res && res.errCode === 0) {
+      toast.success("Save Schedule successfully");
+    } else {
+      toast.error("Error while saving Schedule");
+    }
   };
   render() {
     let arrTimeToDisplay = this.state.arrTimeGet;

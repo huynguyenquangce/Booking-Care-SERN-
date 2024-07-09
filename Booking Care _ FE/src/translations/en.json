@@ -13,7 +13,11 @@
   
   "doctor_section":
   {
-      "icon-title": "CARE SCHEDULE"
+      "icon-title": "Care Schedule",
+      "no-select": "Don't have schedule at this time, please select another day.",
+      "placeholder-select-date":"Select schedule",
+      "choose": "Select",
+      "book-free": "and booking (Booking fee 0đ)"
   }
 },
 "banner": {

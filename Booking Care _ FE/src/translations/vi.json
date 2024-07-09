@@ -14,7 +14,11 @@
 
         "doctor_section":
         {
-            "icon-title": "LỊCH KHÁM"
+            "icon-title": "Lịch Khám",
+            "no-select": "Không có lịch khám trong ngày này, vui lòng chọn ngày khác.",
+            "placeholder-select-date":"Chọn ngày khám bệnh",
+            "choose": "Chọn",
+            "book-free": "và đặt (Phí đặt lịch 0đ)"
         }
 
 
