@@ -100,7 +100,11 @@
     "doctor": {
         "info-title": "Create additional information for the doctor",
         "select": "Select doctor",
-        "introduce-info": "Introduction information"
+        "introduce-info": "Introduction information",
+        "description": "More info",
+         "select-province-title": "Select Location",
+         "select-care-price-title": "Select care price",
+        "select-care-payment-title": "Select Payment Method"
       },
       "manage-schedule-doctor": 
       {

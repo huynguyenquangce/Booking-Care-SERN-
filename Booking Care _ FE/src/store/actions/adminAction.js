@@ -349,3 +349,77 @@ export const fetchScheduleSuccess = (input) => ({
 export const fetchScheduleFailed = () => ({
   type: actionTypes.FETCH_SCHEDULE_DOCTOR_FAILED,
 });
+
+// fetch province from allcode
+export const fetchProvinceStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeData("PROVINCE");
+      if (res && res.errCode === 0) {
+        dispatch(fetchProvinceSuccess(res.data));
+      } else {
+        dispatch(fetchProvinceFailed());
+      }
+    } catch (error) {
+      dispatch(fetchProvinceFailed());
+      console.log(error);
+    }
+  };
+};
+export const fetchProvinceSuccess = (inputData) => ({
+  type: actionTypes.FETCH_PROVINCE_DOCTOR_SUCCESS,
+  data: inputData,
+});
+
+export const fetchProvinceFailed = () => ({
+  type: actionTypes.FETCH_PROVINCE_DOCTOR_FAILED,
+});
+// fetch price from allcode
+export const fetchPriceStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeData("PRICE");
+      if (res && res.errCode === 0) {
+        dispatch(fetchPriceSuccess(res.data));
+      } else {
+        dispatch(fetchPriceFailed());
+      }
+    } catch (error) {
+      dispatch(fetchPriceFailed());
+      console.log(error);
+    }
+  };
+};
+export const fetchPriceSuccess = (inputData) => ({
+  type: actionTypes.FETCH_PRICE_DOCTOR_SUCCESS,
+  data: inputData,
+});
+
+export const fetchPriceFailed = () => ({
+  type: actionTypes.FETCH_PRICE_DOCTOR_FAILED,
+});
+
+// fetch payment from all code
+export const fetchPaymentStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeData("PAYMENT");
+      if (res && res.errCode === 0) {
+        dispatch(fetchPaymentSuccess(res.data));
+      } else {
+        dispatch(fetchPaymentFailed());
+      }
+    } catch (error) {
+      dispatch(fetchPaymentFailed());
+      console.log(error);
+    }
+  };
+};
+export const fetchPaymentSuccess = (inputData) => ({
+  type: actionTypes.FETCH_PAYMENT_DOCTOR_SUCCESS,
+  data: inputData,
+});
+
+export const fetchPaymentFailed = () => ({
+  type: actionTypes.FETCH_PAYMENT_DOCTOR_FAILED,
+});

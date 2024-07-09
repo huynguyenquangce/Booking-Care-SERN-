@@ -3,6 +3,11 @@
         color: #0071ba;
     }
     .manage-schedule-content {
+        .select-doctor-content {
+            .select-doctor-select {
+                // cursor: pointer !important;
+            }
+        }
         .time-select-zone {
             display: flex;
             gap: 20px;

@@ -106,7 +106,12 @@
     {
         "info-title": "Tạo thông tin thêm cho bác sĩ",
         "select":"Chọn bác sĩ",
-        "introduce-info":"Thông tin giới thiệu"
+        "introduce-info":"Thông tin giới thiệu",
+        "description": "Thông tin thêm",
+        "select-province-title": "Chọn vị trí khám",
+        "select-care-price-title": "Chọn giá khám bệnh",
+        "select-care-payment-title": "Chọn phương thức thanh toán"
+
     },
     "manage-schedule-doctor": 
     {
