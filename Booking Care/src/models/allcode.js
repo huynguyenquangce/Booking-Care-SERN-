@@ -21,6 +21,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "timeType", // Column name of associated table
         as: "timeTypeData", // Alias for the table
       });
+      Allcode.hasMany(models.Doctor_Info, {
+        foreignKey: "priceId", // Column name of associated table
+        as: "priceInfo", // Alias for the table
+      });
+      Allcode.hasMany(models.Doctor_Info, {
+        foreignKey: "provinceId", // Column name of associated table
+        as: "provinceInfo", // Alias for the table
+      });
+      Allcode.hasMany(models.Doctor_Info, {
+        foreignKey: "paymentId", // Column name of associated table
+        as: "paymentInfo", // Alias for the table
+      });
     }
   }
   Allcode.init(
