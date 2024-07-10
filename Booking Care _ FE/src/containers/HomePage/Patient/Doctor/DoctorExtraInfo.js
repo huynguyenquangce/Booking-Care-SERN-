@@ -3,27 +3,46 @@ import { connect } from "react-redux";
 import "./DoctorExtraInfo.scss";
 import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router-dom";
-import HomeHeader from "../../HomeHeader";
 import * as actions from "../../../../store/actions";
 import { LANGUAGE } from "../../../../utils";
-import DoctorSchedule from "./DoctorSchedule";
+const USDollar = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+const VND = new Intl.NumberFormat("vi-VN", {
+  style: "currency",
+  currency: "VND",
+});
 class DoctorExtraInfo extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isOpenMore: false,
+      doctorInfoState: [],
+      nameClinic: "",
     };
   }
 
-  componentDidMount() {}
   handleMoreInfo = () => {
     this.setState({
       isOpenMore: !this.state.isOpenMore,
     });
   };
+  componentDidMount() {
+    this.props.fetchDoctorInfo(this.props.inputId);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.doctorInfoRedux !== this.props.doctorInfoRedux) {
+      this.setState({
+        doctorInfoState: this.props.doctorInfoRedux,
+      });
+    }
+  }
   render() {
-    let { isOpenMore } = this.state;
+    let { language } = this.props;
+    let { isOpenMore, nameClinic } = this.state;
+    let { doctorInfoState } = this.state;
+    console.log("check info", doctorInfoState);
     return (
       <>
         <div className="content-right ms-3">
@@ -32,23 +51,114 @@ class DoctorExtraInfo extends Component {
               <div className="extra-doctor-title">
                 <FormattedMessage id="homeheader.doctor_section.extra-doctor-title-address"></FormattedMessage>
               </div>
-              <div className="extra-doctor-name-clinic">
-                Bệnh viện Đa khoa Bảo Sơn 2
+              <div className="extra-doctor-name-clinic fw-bold">
+                {doctorInfoState &&
+                doctorInfoState.InfoTableData &&
+                doctorInfoState.InfoTableData.nameClinic
+                  ? doctorInfoState.InfoTableData.nameClinic
+                  : ""}
               </div>
               <div className="extra-doctor-name-address">
-                Số 52 Nguyễn Chí Thanh - Đống Đa - Hà Nội
+                {doctorInfoState &&
+                doctorInfoState.InfoTableData &&
+                doctorInfoState.InfoTableData.addressClinic
+                  ? doctorInfoState.InfoTableData.addressClinic
+                  : ""}
               </div>
             </div>
             <div className="second-section d-flex mt-3">
-              <div className="second-section-content">GIÁ KHÁM:</div>
-              <span className="d-flex align-items-center">200.000 đ</span>
+              <div className="second-section-content d-flex align-items-center">
+                GIÁ KHÁM:
+              </div>
+              <span className="d-flex align-items-center d-flex">
+                {doctorInfoState &&
+                  doctorInfoState.InfoTableData &&
+                  doctorInfoState.InfoTableData.priceInfo &&
+                  (language === LANGUAGE.VI
+                    ? VND.format(
+                        doctorInfoState.InfoTableData.priceInfo.valueVi
+                      )
+                    : USDollar.format(
+                        doctorInfoState.InfoTableData.priceInfo.valueEn
+                      ))}
+              </span>
               <div
                 className="more-info-modal d-flex align-items-center"
                 onClick={() => this.handleMoreInfo()}
               >
-                Xem chi tiết
+                <span>Xem chi tiết</span>
               </div>
-              {isOpenMore === true && <div>Open</div>}
+              {isOpenMore === true && (
+                <>
+                  <div className="modal-info d-flex flex-column justify-content-between w-100 mt-3">
+                    <div className="info-1 d-flex justify-content-between w-100 mb-2">
+                      <div>Giá khám thường</div>
+                      <div>
+                        {doctorInfoState &&
+                          doctorInfoState.InfoTableData &&
+                          doctorInfoState.InfoTableData.priceInfo &&
+                          (language === LANGUAGE.VI
+                            ? VND.format(
+                                parseInt(
+                                  doctorInfoState.InfoTableData.priceInfo
+                                    .valueVi
+                                ) + parseInt("100000")
+                              )
+                            : USDollar.format(
+                                parseInt(
+                                  doctorInfoState.InfoTableData.priceInfo
+                                    .valueEn
+                                ) + parseInt("5")
+                              ))}
+                      </div>
+                    </div>
+                    <div className="info-2 d-flex justify-content-between w-100 mb-2 pt-2">
+                      <div>Giá khám bảo hiểm</div>
+                      <div>
+                        {" "}
+                        {doctorInfoState &&
+                          doctorInfoState.InfoTableData &&
+                          doctorInfoState.InfoTableData.priceInfo &&
+                          (language === LANGUAGE.VI
+                            ? VND.format(
+                                parseInt(
+                                  doctorInfoState.InfoTableData.priceInfo
+                                    .valueVi
+                                ) + parseInt("50000")
+                              )
+                            : USDollar.format(
+                                parseInt(
+                                  doctorInfoState.InfoTableData.priceInfo
+                                    .valueEn
+                                ) + parseInt("2")
+                              ))}
+                      </div>
+                    </div>
+                    <div className="info-3 d-flex justify-content-between w-100 pt-2">
+                      <div>Giá khám dịch vụ</div>
+                      <div>
+                        {" "}
+                        {doctorInfoState &&
+                          doctorInfoState.InfoTableData &&
+                          doctorInfoState.InfoTableData.priceInfo &&
+                          (language === LANGUAGE.VI
+                            ? VND.format(
+                                parseInt(
+                                  doctorInfoState.InfoTableData.priceInfo
+                                    .valueVi
+                                ) + parseInt("200000")
+                              )
+                            : USDollar.format(
+                                parseInt(
+                                  doctorInfoState.InfoTableData.priceInfo
+                                    .valueEn
+                                ) + parseInt("10")
+                              ))}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -60,6 +170,7 @@ class DoctorExtraInfo extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    doctorInfoRedux: state.admin.doctorInfo,
   };
 };
 

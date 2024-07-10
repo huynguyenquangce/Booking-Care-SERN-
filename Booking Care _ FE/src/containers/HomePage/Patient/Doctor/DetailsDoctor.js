@@ -24,7 +24,6 @@ class DetailsDoctor extends Component {
   }
   render() {
     let info = this.props.doctorInfoRedux;
-    console.log("check info", this.props.doctorInfoRedux);
     let viTitle =
       info && info.positionData && info.positionData.valueVi
         ? info.positionData.valueVi + " " + info.lastName + " " + info.firstName
@@ -58,7 +57,7 @@ class DetailsDoctor extends Component {
               <DoctorSchedule></DoctorSchedule>
             </div>
             <div className="col-4 schedule-doctor-right">
-              <DoctorExtraInfo></DoctorExtraInfo>
+              <DoctorExtraInfo inputId={this.state.idFromURL}></DoctorExtraInfo>
             </div>
           </div>
           <div className="doctor-main-info">
