@@ -60,7 +60,7 @@ class DoctorSchedule extends Component {
     let arrSchedule = this.props.arrScheduleRedux;
     return (
       <>
-        <div className="col-6 content-left">
+        <div className="content-left">
           <div className="schedule-container ms-5">
             <div className="schedule-select col-4">
               <Select

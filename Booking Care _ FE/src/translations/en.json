@@ -17,7 +17,8 @@
       "no-select": "Don't have schedule at this time, please select another day.",
       "placeholder-select-date":"Select schedule",
       "choose": "Select",
-      "book-free": "and booking (Booking fee 0đ)"
+      "book-free": "and booking (Booking fee 0đ)",
+      "extra-doctor-title-address":"Địa chỉ khám bệnh"
   }
 },
 "banner": {
@@ -104,7 +105,10 @@
         "description": "More info",
          "select-province-title": "Select Location",
          "select-care-price-title": "Select care price",
-        "select-care-payment-title": "Select Payment Method"
+        "select-care-payment-title": "Select Payment Method",
+        "name-clinic": "Clinic name",
+        "name-note": "Information Extension",
+        "address-clinic": "Clinic address"
       },
       "manage-schedule-doctor": 
       {

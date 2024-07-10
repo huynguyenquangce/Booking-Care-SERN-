@@ -18,10 +18,9 @@
             "no-select": "Không có lịch khám trong ngày này, vui lòng chọn ngày khác.",
             "placeholder-select-date":"Chọn ngày khám bệnh",
             "choose": "Chọn",
-            "book-free": "và đặt (Phí đặt lịch 0đ)"
+            "book-free": "và đặt (Phí đặt lịch 0đ)",
+            "extra-doctor-title-address":"Hospital Location"
         }
-
-
     },
 
     "banner":
@@ -108,9 +107,12 @@
         "select":"Chọn bác sĩ",
         "introduce-info":"Thông tin giới thiệu",
         "description": "Thông tin thêm",
-        "select-province-title": "Chọn vị trí khám",
-        "select-care-price-title": "Chọn giá khám bệnh",
-        "select-care-payment-title": "Chọn phương thức thanh toán"
+        "select-province-title": "Vị trí khám",
+        "select-care-price-title": "Giá khám bệnh",
+        "select-care-payment-title": "Phương thức thanh toán",
+        "name-clinic": "Tên phòng khám",
+        "name-note": "Ghi chú",
+        "address-clinic": "Địa chỉ phòng khám"
 
     },
     "manage-schedule-doctor": 

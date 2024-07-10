@@ -7,6 +7,7 @@ import HomeHeader from "../../HomeHeader";
 import * as actions from "../../../../store/actions";
 import { LANGUAGE } from "../../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
+import DoctorExtraInfo from "./DoctorExtraInfo";
 class DetailsDoctor extends Component {
   constructor(props) {
     super(props);
@@ -52,8 +53,13 @@ class DetailsDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor mt-5">
-            <DoctorSchedule></DoctorSchedule>
+          <div className="schedule-doctor mt-5 row">
+            <div className="col-6 schedule-doctor-left">
+              <DoctorSchedule></DoctorSchedule>
+            </div>
+            <div className="col-4 schedule-doctor-right">
+              <DoctorExtraInfo></DoctorExtraInfo>
+            </div>
           </div>
           <div className="doctor-main-info">
             <div
