@@ -24,6 +24,27 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "keyMap",
         as: "paymentInfo", // Alias for the table
       });
+      Doctor_Info.belongsTo(models.Users, {
+        foreignKey: "doctorId", // Column name of associated table
+        targetKey: "id",
+        as: "InfoTableData", // Alias for the table
+      });
+      // get value from allcode
+      // Doctor_Info.belongsTo(models.Allcode, {
+      //   foreignKey: "priceId", // Column name of associated table
+      //   targetKey: "keyMap",
+      //   as: "PriceData", // Alias for the table
+      // });
+      // Doctor_Info.belongsTo(models.Allcode, {
+      //   foreignKey: "provinceId", // Column name of associated table
+      //   targetKey: "keyMap",
+      //   as: "ProvinceData", // Alias for the table
+      // });
+      // Doctor_Info.belongsTo(models.Allcode, {
+      //   foreignKey: "paymentId", // Column name of associated table
+      //   targetKey: "keyMap",
+      //   as: "paymentData", // Alias for the table
+      // });
     }
   }
   Doctor_Info.init(
@@ -40,6 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Doctor_Info",
+      freezeTableName: true,
     }
   );
   return Doctor_Info;

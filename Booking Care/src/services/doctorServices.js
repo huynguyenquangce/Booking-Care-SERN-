@@ -55,7 +55,6 @@ let getDoctorSelectService = () => {
 };
 
 let PostDoctorInfoService = (data) => {
-  console.log("Check data", data.actions);
   return new Promise(async (resolve, reject) => {
     try {
       if (!data || !data.actions) {
@@ -72,10 +71,10 @@ let PostDoctorInfoService = (data) => {
             description: data.description,
             doctorId: data.doctorId,
           });
-          resolve({
-            errCode: 0,
-            errMessage: "Create OK",
-          });
+          // resolve({
+          //   errCode: 0,
+          //   errMessage: "Create OK",
+          // });
         } else if (data.actions === "UPDATE") {
           // Moved the else if inside the main if-else block
           let doctor = await db.MarkDown.findOne({
@@ -88,10 +87,10 @@ let PostDoctorInfoService = (data) => {
             doctor.contentMarkDown = data.contentMarkDown;
             doctor.description = data.description;
             await doctor.save(); // Save the changes
-            resolve({
-              errCode: 0,
-              errMessage: "Update OK",
-            });
+            // resolve({
+            //   errCode: 0,
+            //   errMessage: "Update OK",
+            // });
           } else {
             resolve({
               errCode: 2,
@@ -99,6 +98,43 @@ let PostDoctorInfoService = (data) => {
             });
           }
         }
+      }
+      // for insert to doctor_info table
+      let doctorInfo = await db.Doctor_Info.findOne({
+        where: {
+          doctorId: data.doctorId,
+        },
+        raw: false,
+      });
+      // for saving
+      if (!doctorInfo) {
+        console.log("Check point");
+        await db.Doctor_Info.create({
+          doctorId: data.doctorId,
+          priceId: data.priceId,
+          provinceId: data.provinceId,
+          paymentId: data.paymentId,
+          addressClinic: data.address_clinic,
+          nameClinic: data.nameClinic,
+          note: data.note,
+        });
+        resolve({
+          errCode: 0,
+          errMessage: "Insert OK to doctor_info table",
+        });
+      } else {
+        doctorInfo.doctorId = data.doctorId;
+        doctorInfo.priceId = data.priceId;
+        doctorInfo.provinceId = data.provinceId;
+        doctorInfo.paymentId = data.paymentId;
+        doctorInfo.addressClinic = data.address_clinic;
+        doctorInfo.nameClinic = data.nameClinic;
+        doctorInfo.note = data.note;
+        await doctorInfo.save(); // Save the changes
+        resolve({
+          errCode: 1,
+          errMessage: "Fail to insert to doctor info",
+        });
       }
     } catch (error) {
       reject(error);
@@ -134,13 +170,41 @@ let getDoctorInfoService = (inputId) => {
                 "doctorId",
               ],
             },
+            {
+              model: db.Doctor_Info,
+              attributes: [
+                "priceId",
+                "provinceId",
+                "paymentId",
+                "addressClinic",
+                "nameClinic",
+                "note",
+              ],
+              as: "InfoTableData",
+              include: [
+                {
+                  model: db.Allcode,
+                  attributes: ["valueEn", "valueVi"],
+                  as: "priceInfo",
+                },
+                {
+                  model: db.Allcode,
+                  attributes: ["valueEn", "valueVi"],
+                  as: "provinceInfo",
+                },
+                {
+                  model: db.Allcode,
+                  attributes: ["valueEn", "valueVi"],
+                  as: "paymentInfo",
+                },
+              ],
+            },
           ],
           raw: true,
           nest: true,
         });
-        // doctorInfo.image = new Buffer(doctorInfo.image, "base64").toString(
-        //   "binary"
-        // );
+        // get more info doctor in doctor_info table
+        ////////////////////
         doctorInfo.image = Buffer.from(doctorInfo.image, "base64").toString(
           "binary"
         );
