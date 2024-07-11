@@ -19,7 +19,23 @@
             "placeholder-select-date":"Chọn ngày khám bệnh",
             "choose": "Chọn",
             "book-free": "và đặt (Phí đặt lịch 0đ)",
-            "extra-doctor-title-address":"Hospital Location"
+            "extra-doctor-title-address":"Địa điểm khám bệnh",
+            
+            "modal":
+            {
+                "title": "Thông tin đặt lịch khám bệnh",
+                "title-price": "Giá khám bệnh",
+                "time-booking": "Thời gian khám bệnh",
+                "name": "Họ và tên",
+                "phone":"Số điện thoại",
+                "email": "Email",
+                "address": "Địa chỉ",
+                "note": "Ghi chú khám bệnh",
+                "who": "Đặt cho ai",
+                "gender": "Giới tính",
+                "save": "Đặt lịch",
+                "close-btn": "Đóng cửa sổ"
+            }
         }
     },
 

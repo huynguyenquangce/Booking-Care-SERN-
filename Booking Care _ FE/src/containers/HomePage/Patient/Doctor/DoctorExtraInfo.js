@@ -4,7 +4,7 @@ import "./DoctorExtraInfo.scss";
 import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../../../store/actions";
-import { LANGUAGE } from "../../../../utils";
+import { LANGUAGE, price } from "../../../../utils";
 const USDollar = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -102,13 +102,13 @@ class DoctorExtraInfo extends Component {
                                 parseInt(
                                   doctorInfoState.InfoTableData.priceInfo
                                     .valueVi
-                                ) + parseInt("100000")
+                                ) + parseInt(price.NORMAL_VI)
                               )
                             : USDollar.format(
                                 parseInt(
                                   doctorInfoState.InfoTableData.priceInfo
                                     .valueEn
-                                ) + parseInt("5")
+                                ) + parseInt(price.NORMAL_EN)
                               ))}
                       </div>
                     </div>
@@ -124,13 +124,13 @@ class DoctorExtraInfo extends Component {
                                 parseInt(
                                   doctorInfoState.InfoTableData.priceInfo
                                     .valueVi
-                                ) + parseInt("50000")
+                                ) + parseInt(price.BH_VI)
                               )
                             : USDollar.format(
                                 parseInt(
                                   doctorInfoState.InfoTableData.priceInfo
                                     .valueEn
-                                ) + parseInt("2")
+                                ) + parseInt(price.BH_EN)
                               ))}
                       </div>
                     </div>
@@ -146,13 +146,13 @@ class DoctorExtraInfo extends Component {
                                 parseInt(
                                   doctorInfoState.InfoTableData.priceInfo
                                     .valueVi
-                                ) + parseInt("200000")
+                                ) + parseInt(price.DV_VI)
                               )
                             : USDollar.format(
                                 parseInt(
                                   doctorInfoState.InfoTableData.priceInfo
                                     .valueEn
-                                ) + parseInt("10")
+                                ) + parseInt(price.DV_EN)
                               ))}
                       </div>
                     </div>

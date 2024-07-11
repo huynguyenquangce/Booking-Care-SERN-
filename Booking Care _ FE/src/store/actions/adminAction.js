@@ -10,6 +10,7 @@ import {
   postDoctorInfo,
   getDoctorInfo,
   getDoctorSchedule,
+  getDoctorShortInfo,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -422,4 +423,30 @@ export const fetchPaymentSuccess = (inputData) => ({
 
 export const fetchPaymentFailed = () => ({
   type: actionTypes.FETCH_PAYMENT_DOCTOR_FAILED,
+});
+
+///////getDoctorInfo//////////
+export const getShortDoctorInfoStart = (inputData) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorShortInfo(inputData);
+      if (res && res.errCode === 0) {
+        dispatch(getShortDoctorInfoSuccess(res.data));
+      } else {
+        dispatch(getShortDoctorInfoFailed());
+      }
+    } catch (error) {
+      dispatch(getShortDoctorInfoFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const getShortDoctorInfoSuccess = (inputData) => ({
+  type: actionTypes.FETCH_SHORT_INFO_DOCTOR_SUCCESS,
+  shortdoctorInfo: inputData,
+});
+
+export const getShortDoctorInfoFailed = () => ({
+  type: actionTypes.FETCH_SHORT_INFO_DOCTOR_FAILED,
 });

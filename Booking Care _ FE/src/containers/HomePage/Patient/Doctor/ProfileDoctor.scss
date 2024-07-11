@@ -1,0 +1,19 @@
+.info-short-doctor-container {
+    .first-section {
+        .img-doctor {
+            img {
+                width: 110px !important;
+                height: 110px !important;
+                border-radius: 50% !important;
+                align-items: center;
+            }
+        }
+        .content-short-doctor {
+            .content-short-doctor-title {
+                .name {
+                    color: #337ab7;
+                }
+            }
+        }
+    }
+}

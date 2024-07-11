@@ -55,6 +55,14 @@ const getDoctorSchedule = (inputData) => {
   const { id, date } = inputData;
   return axios.get(`/api/get-doctor-schedule?id=${id}&date=${date}`);
 };
+
+const getDoctorShortInfo = (inputId) => {
+  return axios.get(`/api/get-doctor-short-info?id=${inputId}`);
+};
+
+const postBookingPatient = (inputData) => {
+  return axios.post("/api/patient-createBooking", inputData);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -68,4 +76,6 @@ export {
   getDoctorInfo,
   postDoctorSchedule,
   getDoctorSchedule,
+  getDoctorShortInfo,
+  postBookingPatient,
 };

@@ -20,10 +20,19 @@ export const manageActions = {
 };
 
 export const dateFormat = {
-  SEND_TO_SERVER: "DD/MM/YYYY",
+  SEND_TO_SERVER: "YYYY-MM-DD",
 };
 
 export const YesNoObj = {
   YES: "Y",
   NO: "N",
+};
+
+export const price = {
+  NORMAL_VI: "100000",
+  NORMAL_EN: "5",
+  BH_VI: "50000",
+  BH_EN: "2",
+  DV_VI: "200000",
+  DV_EN: "10",
 };

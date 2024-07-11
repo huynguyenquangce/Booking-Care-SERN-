@@ -18,7 +18,22 @@
       "placeholder-select-date":"Select schedule",
       "choose": "Select",
       "book-free": "and booking (Booking fee 0đ)",
-      "extra-doctor-title-address":"Địa chỉ khám bệnh"
+      "extra-doctor-title-address":"Địa chỉ khám bệnh",
+
+      "modal": {
+        "title": "Appointment Booking Information",
+        "title-price": "Consultation Fee",
+        "time-booking": "Appointment Time",
+        "name": "Full Name",
+        "phone": "Phone Number",
+        "email": "Email",
+        "address": "Address",
+        "note": "Medical Notes",
+        "who": "Booking For",
+        "gender": "Gender",
+        "save": "Save Booking",
+        "close-btn": "Close Window"
+      }
   }
 },
 "banner": {

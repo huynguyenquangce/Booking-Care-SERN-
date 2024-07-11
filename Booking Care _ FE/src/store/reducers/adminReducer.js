@@ -12,6 +12,7 @@ const initialState = {
   provinces: [],
   prices: [],
   payments: [],
+  shortInfo: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -175,6 +176,16 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       };
 
+    // fetch short doctor info data
+    case actionTypes.FETCH_SHORT_INFO_DOCTOR_SUCCESS:
+      state.shortInfo = action.shortdoctorInfo;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_SHORT_INFO_DOCTOR_FAILED:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

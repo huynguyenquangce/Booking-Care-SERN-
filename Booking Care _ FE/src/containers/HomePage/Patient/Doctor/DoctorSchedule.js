@@ -5,9 +5,10 @@ import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router-dom";
 import HomeHeader from "../../HomeHeader";
 import * as actions from "../../../../store/actions";
-import { LANGUAGE } from "../../../../utils";
+import { LANGUAGE, dateFormat } from "../../../../utils";
 import Select from "react-select";
 import moment from "moment";
+import DoctorModal from "./Modal/DoctorModal";
 // import "moment/locale/vi";
 const generateDateOptions = () => {
   const today = moment();
@@ -17,7 +18,7 @@ const generateDateOptions = () => {
   for (let i = 0; i < 7; i++) {
     let date = today.clone().add(i, "days");
     let label = `${date.format("dddd")} - ${date.format("DD/MM")}`;
-    options.push({ value: date.format("YYYY-DD-MM"), label });
+    options.push({ value: date.format(dateFormat.SEND_TO_SERVER), label });
   }
   return options;
 };
@@ -31,6 +32,8 @@ class DoctorSchedule extends Component {
       selectOption: {},
       options: generateDateOptions(),
       idFromURL: id,
+      isModalOpen: false,
+      timeToSend: {},
     };
   }
 
@@ -40,12 +43,7 @@ class DoctorSchedule extends Component {
     });
     console.log("check selected option", this.state.selectOption);
   };
-  componentDidMount() {
-    // this.props.getDoctorSchedule({
-    //   id: this.state.idFromURL,
-    //   date: this.state.selectOption ? this.state.selectOption.value : null,
-    // });
-  }
+  componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.selectOption !== this.state.selectOption) {
@@ -55,12 +53,44 @@ class DoctorSchedule extends Component {
       });
     }
   }
+  toggleModal = () => {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen,
+    });
+  };
+  handleOpenModal = () => {
+    this.setState({
+      isModalOpen: true,
+    });
+  };
+  handleOnClickSchedule = (data) => {
+    let objSend = this.buildDateToSend(data);
+    this.setState({
+      timeToSend: objSend,
+    });
+    this.handleOpenModal();
+  };
+  buildDateToSend = (inputData) => {
+    let obj = {};
+    obj.date = inputData.date;
+    obj.timeType = inputData.timeType;
+    obj.TimeData = {};
+    obj.TimeData.valueEn = inputData.timeTypeData.valueEn;
+    obj.TimeData.valueVi = inputData.timeTypeData.valueVi;
+    return obj;
+  };
   render() {
-    console.log("checking props 69", this.props.arrScheduleRedux);
     let arrSchedule = this.props.arrScheduleRedux;
+    console.log("check schedule", this.state.arrSchedule);
     return (
       <>
         <div className="content-left">
+          <DoctorModal
+            isOpen={this.state.isModalOpen}
+            toggleModalFromParent={this.toggleModal}
+            doctorId={this.state.idFromURL}
+            timeData={this.state.timeToSend}
+          ></DoctorModal>
           <div className="schedule-container ms-5">
             <div className="schedule-select col-4">
               <Select
@@ -84,7 +114,11 @@ class DoctorSchedule extends Component {
             <div className="schedule-zone mt-4 d-flex">
               {arrSchedule && arrSchedule.length > 0 ? (
                 arrSchedule.map((item, index) => (
-                  <button key={index} className="btn-schedule btn">
+                  <button
+                    key={index}
+                    className="btn-schedule btn"
+                    onClick={() => this.handleOnClickSchedule(item)}
+                  >
                     {this.props.language && this.props.language === LANGUAGE.VI
                       ? item.timeTypeData.valueVi
                       : item.timeTypeData.valueEn}
