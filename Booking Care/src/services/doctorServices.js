@@ -296,6 +296,79 @@ let getDoctorScheduleService = (inputData) => {
     }
   });
 };
+
+let getDoctorShortInfoService = (inputId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!inputId) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing Data",
+          data: [],
+        });
+      } else {
+        let doctorInfo = await db.Users.findOne({
+          where: { id: inputId },
+          attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+          include: [
+            {
+              model: db.Allcode,
+              as: "positionData",
+              attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.MarkDown,
+              attributes: ["description"],
+            },
+            {
+              model: db.Doctor_Info,
+              attributes: [
+                // "priceId",
+                // "provinceId",
+                // "paymentId",
+                "addressClinic",
+                "nameClinic",
+                "note",
+              ],
+              as: "InfoTableData",
+              include: [
+                {
+                  model: db.Allcode,
+                  attributes: ["valueEn", "valueVi"],
+                  as: "priceInfo",
+                },
+                {
+                  model: db.Allcode,
+                  attributes: ["valueEn", "valueVi"],
+                  as: "provinceInfo",
+                },
+                {
+                  model: db.Allcode,
+                  attributes: ["valueEn", "valueVi"],
+                  as: "paymentInfo",
+                },
+              ],
+            },
+          ],
+          raw: true,
+          nest: true,
+        });
+        // get more info doctor in doctor_info table
+        ////////////////////
+        doctorInfo.image = Buffer.from(doctorInfo.image, "base64").toString(
+          "binary"
+        );
+        resolve({
+          errCode: 0,
+          errMessage: "OK",
+          data: doctorInfo,
+        });
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   getTopDoctorService: getTopDoctorService,
   getDoctorSelectService: getDoctorSelectService,
@@ -303,4 +376,5 @@ module.exports = {
   getDoctorInfoService: getDoctorInfoService,
   createDoctorScheduleService: createDoctorScheduleService,
   getDoctorScheduleService: getDoctorScheduleService,
+  getDoctorShortInfoService: getDoctorShortInfoService,
 };

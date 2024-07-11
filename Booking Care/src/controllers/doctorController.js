@@ -6,6 +6,7 @@ import {
   getDoctorInfoService,
   createDoctorScheduleService,
   getDoctorScheduleService,
+  getDoctorShortInfoService,
 } from "../services/doctorServices";
 let handleGetTopDoctor = async (req, res) => {
   let limit = req.query.limit;
@@ -119,6 +120,23 @@ let handleGetDoctorSchedule = async (req, res) => {
     });
   }
 };
+
+let handleGetDoctorShortInfo = async (req, res) => {
+  try {
+    let response = await getDoctorShortInfoService(req.query.id);
+    return res.status(200).json({
+      errCode: response.errCode,
+      errMessage: response.errMessage,
+      data: response.data,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
 module.exports = {
   handleGetTopDoctor: handleGetTopDoctor,
   handleGetDoctorSelect: handleGetDoctorSelect,
@@ -126,4 +144,5 @@ module.exports = {
   handleGetDoctorInfo: handleGetDoctorInfo,
   handleCreateDoctorSchedule: handleCreateDoctorSchedule,
   handleGetDoctorSchedule: handleGetDoctorSchedule,
+  handleGetDoctorShortInfo: handleGetDoctorShortInfo,
 };
