@@ -79,6 +79,7 @@ class DoctorSchedule extends Component {
     obj.TimeData.valueVi = inputData.timeTypeData.valueVi;
     return obj;
   };
+
   render() {
     let arrSchedule = this.props.arrScheduleRedux;
     console.log("check schedule", this.state.arrSchedule);

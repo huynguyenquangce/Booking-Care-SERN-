@@ -6,6 +6,7 @@ import "./DoctorModal.scss";
 import * as actions from "../../../../../store/actions";
 import ProfileDoctor from "../ProfileDoctor";
 import { postBookingPatient } from "../../../../../services/userService";
+import { toast } from "react-toastify";
 class DoctorModal extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,8 @@ class DoctorModal extends Component {
       note_state: "",
       who_state: "",
       gender_state: "",
+      arr_gender: [],
+      infoFromModal: {},
     };
   }
   handleOnChangeInput = (event, id) => {
@@ -27,9 +30,11 @@ class DoctorModal extends Component {
     });
   };
   componentDidMount() {
+    this.props.fetchGenderRedux();
     this.setState({
       idFromParent: this.props.doctorId,
     });
+    this.props.fetchShortDoctorInfo(this.props.doctorId);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,25 +43,68 @@ class DoctorModal extends Component {
         timeObj: this.props.timeData,
       });
     }
+    if (prevProps.genderRedux !== this.props.genderRedux) {
+      this.setState({
+        arr_gender: this.props.genderRedux,
+        gender_state:
+          this.props.genderRedux && this.props.genderRedux.length > 0
+            ? this.props.genderRedux[0].keyMap
+            : "",
+      });
+    }
+    if (prevProps.infoDoctorRedux !== this.props.infoDoctorRedux) {
+      this.setState({
+        infoFromModal: this.props.infoDoctorRedux,
+      });
+    }
   }
+
   toggle = () => {
     this.props.toggleModalFromParent();
   };
-  handleSaveBooking = () => {
-    postBookingPatient({
+  handleSaveBooking = async () => {
+    let doctorName =
+      this.state.infoFromModal &&
+      this.state.infoFromModal.lastName &&
+      this.state.infoFromModal.positionData.valueVi
+        ? this.state.infoFromModal.lastName +
+          " " +
+          this.state.infoFromModal.firstName
+        : "";
+    this.props.toggleModalFromParent();
+    let res = await postBookingPatient({
       doctorId: this.state.idFromParent,
       firstName: this.state.name_state,
       email: this.state.email_state,
-      phoneNumber: this.state.phoneNumber_state,
+      phoneNumber: this.state.phone_state,
       gender: this.state.gender_state,
       address: this.state.address_state,
       date: this.state.timeObj.date,
       timeType: this.state.timeObj.timeType,
+      doctorName: doctorName,
+      language: this.props.language,
     });
+    if (res && res.errCode === 0) {
+      toast.success("Success Booking");
+      this.setState({
+        name_state: "",
+        phone_state: "",
+        gender_state: this.props.genderRedux[0].keyMap,
+        email_state: "",
+        address_state: "",
+        note_state: "",
+        who_state: "",
+      });
+    } else {
+      toast.error("Error booking");
+      console.log("chek code", res.errCode);
+    }
   };
   render() {
-    let { timeObj } = this.state;
+    console.log("check gender", this.props.genderRedux);
+    let { timeObj, arr_gender } = this.state;
     let isOpen = this.props.isOpen;
+    let { language } = this.props;
     return (
       <Modal
         isOpen={isOpen}
@@ -172,19 +220,29 @@ class DoctorModal extends Component {
                   value={this.state.who_state}
                 ></input>
               </div>
-              <div className="gender-field col-6 d-flex flex-column">
+              <div className="gender-field col-3 d-flex flex-column">
                 <label className="text-primary-customize">
                   {" "}
                   <FormattedMessage id="homeheader.doctor_section.modal.gender"></FormattedMessage>
                 </label>
-                <input
-                  type="text"
-                  className="mt-1"
+                <select
+                  className="form-control gender-select"
                   onChange={(event) =>
                     this.handleOnChangeInput(event, "gender_state")
                   }
-                  value={this.state.gender_state}
-                ></input>
+                >
+                  {arr_gender &&
+                    arr_gender.length > 0 &&
+                    arr_gender.map((item, index) => {
+                      return (
+                        <option key={index} value={item.keyMap}>
+                          {language && language === "vi"
+                            ? item.valueVi
+                            : item.valueEn}
+                        </option>
+                      );
+                    })}
+                </select>
               </div>
             </div>
           </div>
@@ -211,11 +269,19 @@ class DoctorModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    language: state.app.language,
+    genderRedux: state.admin.genders,
+    doctorInfoRedux: state.admin.shortInfo,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchGenderRedux: () => dispatch(actions.fetchGenderStart()),
+    fetchShortDoctorInfo: (inputId) =>
+      dispatch(actions.getShortDoctorInfoStart(inputId)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DoctorModal);

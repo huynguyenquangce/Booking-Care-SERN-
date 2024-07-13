@@ -18,6 +18,12 @@
         align-items: center;
         .modal-custom-schedule-body {
             .input-container {
+                .gender-field {
+                    .gender-select {
+                        margin-top: 2px;
+                        border: 1px solid grey;
+                    }
+                }
                 input {
                     border-radius: 3px;
                     outline: none;
