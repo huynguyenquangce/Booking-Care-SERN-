@@ -1,5 +1,12 @@
 import db from "../models";
+require("dotenv").config();
 import bcrypt, { hash } from "bcrypt";
+import emailService from "./emailService";
+import { v4 as uuidv4 } from "uuid";
+let buildEmailUrl = (InputDoctorId, inputToken) => {
+  let url = `${process.env.REACT_URL}/verify-email?token=${inputToken}&doctorId=${InputDoctorId}`;
+  return url;
+};
 let handleBookingPatientService = (inputData) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -16,6 +23,15 @@ let handleBookingPatientService = (inputData) => {
           errMessage: "Missing required parameter",
         });
       } else {
+        let token = uuidv4();
+        emailService.sendEmailBooking({
+          email: inputData.email,
+          name: inputData.firstName,
+          date: inputData.date,
+          time: inputData.timeType,
+          doctorName: inputData.doctorName,
+          urlLink: buildEmailUrl(inputData.doctorId, token),
+        });
         let patient = await db.Users.findOrCreate({
           where: { email: inputData.email },
           raw: true,
@@ -25,7 +41,7 @@ let handleBookingPatientService = (inputData) => {
             email: inputData.email,
             address: inputData.address,
             gender: inputData.gender,
-            phoneNumber: inputData.phonenumber,
+            phoneNumber: inputData.phoneNumber,
           },
         });
         if (patient && patient[0]) {
@@ -35,9 +51,9 @@ let handleBookingPatientService = (inputData) => {
               statusId: "S1",
               doctorId: inputData.doctorId,
               patientId: patient[0].id,
-              //   patientId: inputData.patientId,
               date: inputData.date,
               timeType: inputData.timeType,
+              token: token,
             },
           });
         }
