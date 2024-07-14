@@ -17,6 +17,7 @@ import Login from "./Auth/Login";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePages.js";
 import Doctor from "../routes/Doctor.js";
+import VerifyEmailBooking from "../containers/HomePage/Patient/VerifyEmailBooking.js";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import CustomScrollbars from "../components/CustomScrollbars.js";
 class App extends Component {
@@ -62,6 +63,10 @@ class App extends Component {
                   />
                   <Route path={path.HOMEPAGE} component={HomePage} />
                   <Route path={path.DETAIL_DOCTOR} component={DetailsDoctor} />
+                  <Route
+                    path={path.VERIFY_EMAIL}
+                    component={VerifyEmailBooking}
+                  />
                 </CustomScrollbars>
               </Switch>
             </div>

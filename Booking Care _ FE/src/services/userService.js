@@ -63,6 +63,10 @@ const getDoctorShortInfo = (inputId) => {
 const postBookingPatient = (inputData) => {
   return axios.post("/api/patient-createBooking", inputData);
 };
+
+const verifyEmailBooking = (inputData) => {
+  return axios.post("/verify-email-booking", inputData);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -78,4 +82,5 @@ export {
   getDoctorSchedule,
   getDoctorShortInfo,
   postBookingPatient,
+  verifyEmailBooking,
 };

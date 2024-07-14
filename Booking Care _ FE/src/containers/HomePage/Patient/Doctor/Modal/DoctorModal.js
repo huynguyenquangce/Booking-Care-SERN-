@@ -52,9 +52,9 @@ class DoctorModal extends Component {
             : "",
       });
     }
-    if (prevProps.infoDoctorRedux !== this.props.infoDoctorRedux) {
+    if (prevProps.doctorInfoRedux !== this.props.doctorInfoRedux) {
       this.setState({
-        infoFromModal: this.props.infoDoctorRedux,
+        infoFromModal: this.props.doctorInfoRedux,
       });
     }
   }
@@ -63,14 +63,31 @@ class DoctorModal extends Component {
     this.props.toggleModalFromParent();
   };
   handleSaveBooking = async () => {
-    let doctorName =
+    // let doctorName =
+    //   this.state.infoFromModal && this.state.infoFromModal.lastName
+    //     ? this.state.infoFromModal.lastName +
+    //       " " +
+    //       this.state.infoFromModal.firstName
+    //     : "";
+    let doctorName = "";
+    if (
       this.state.infoFromModal &&
       this.state.infoFromModal.lastName &&
-      this.state.infoFromModal.positionData.valueVi
-        ? this.state.infoFromModal.lastName +
+      this.state.infoFromModal.firstName
+    ) {
+      if (this.props.language === "vi") {
+        doctorName =
+          this.state.infoFromModal.lastName +
           " " +
-          this.state.infoFromModal.firstName
-        : "";
+          this.state.infoFromModal.firstName;
+      } else {
+        doctorName =
+          this.state.infoFromModal.firstName +
+          " " +
+          this.state.infoFromModal.lastName;
+      }
+    }
+    console.log("check doctor ", doctorName);
     this.props.toggleModalFromParent();
     let res = await postBookingPatient({
       doctorId: this.state.idFromParent,
@@ -80,7 +97,11 @@ class DoctorModal extends Component {
       gender: this.state.gender_state,
       address: this.state.address_state,
       date: this.state.timeObj.date,
-      timeType: this.state.timeObj.timeType,
+      timeType:
+        this.props.language === "vi"
+          ? this.state.timeObj.TimeData.valueVi
+          : this.state.timeObj.TimeData.valueEn,
+      time: this.state.timeObj.timeType,
       doctorName: doctorName,
       language: this.props.language,
     });
@@ -101,7 +122,6 @@ class DoctorModal extends Component {
     }
   };
   render() {
-    console.log("check gender", this.props.genderRedux);
     let { timeObj, arr_gender } = this.state;
     let isOpen = this.props.isOpen;
     let { language } = this.props;
