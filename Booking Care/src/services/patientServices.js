@@ -3,6 +3,7 @@ require("dotenv").config();
 import bcrypt, { hash } from "bcrypt";
 import emailService from "./emailService";
 import { v4 as uuidv4 } from "uuid";
+import { raw } from "body-parser";
 let buildEmailUrl = (InputDoctorId, inputToken) => {
   let url = `${process.env.REACT_URL}/verify-email?token=${inputToken}&doctorId=${InputDoctorId}`;
   return url;
@@ -16,7 +17,8 @@ let handleBookingPatientService = (inputData) => {
         !inputData.timeType ||
         !inputData.date ||
         !inputData.firstName ||
-        !inputData.email
+        !inputData.email ||
+        !inputData.time
       ) {
         resolve({
           errCode: 1,
@@ -31,6 +33,7 @@ let handleBookingPatientService = (inputData) => {
           time: inputData.timeType,
           doctorName: inputData.doctorName,
           urlLink: buildEmailUrl(inputData.doctorId, token),
+          language: inputData.language,
         });
         let patient = await db.Users.findOrCreate({
           where: { email: inputData.email },
@@ -52,7 +55,7 @@ let handleBookingPatientService = (inputData) => {
               doctorId: inputData.doctorId,
               patientId: patient[0].id,
               date: inputData.date,
-              timeType: inputData.timeType,
+              timeType: inputData.time,
               token: token,
             },
           });
@@ -67,6 +70,48 @@ let handleBookingPatientService = (inputData) => {
     }
   });
 };
+
+let verifyEmailBookingService = (inputData) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      {
+        if (!inputData || !inputData.inputToken || !inputData.inputDoctorId) {
+          resolve({
+            errCode: 1,
+            errMessage: "Missing parameter",
+          });
+        } else {
+          let result = await db.Booking.findOne({
+            where: {
+              token: inputData.inputToken,
+              doctorId: inputData.inputDoctorId,
+              statusId: "S1",
+            },
+            raw: false,
+          });
+          if (result) {
+            result.statusId = "S2";
+            await result.save();
+            resolve({
+              errCode: 0,
+              errMessage: "Lịch hẹn đã được xác nhận thành công.",
+            });
+          } else {
+            resolve({
+              errCode: 2,
+              errMessage:
+                "Lịch hẹn không tồn tại hoặc đã được xác nhận thành công.",
+            });
+          }
+        }
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   handleBookingPatientService: handleBookingPatientService,
+  verifyEmailBookingService: verifyEmailBookingService,
 };

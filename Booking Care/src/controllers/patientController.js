@@ -15,6 +15,23 @@ let handleBookingPatient = async (req, res) => {
   }
 };
 
+let verifyEmailBooking = async (req, res) => {
+  console.log("check req", req.body);
+  if (req && req.body) {
+    let result = await patientService.verifyEmailBookingService(req.body);
+    return res.status(200).json({
+      errCode: result.errCode,
+      errMessage: result.errMessage,
+    });
+  } else {
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
 module.exports = {
   handleBookingPatient: handleBookingPatient,
+  verifyEmailBooking: verifyEmailBooking,
 };

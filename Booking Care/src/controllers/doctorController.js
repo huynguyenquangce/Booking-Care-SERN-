@@ -137,6 +137,7 @@ let handleGetDoctorShortInfo = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   handleGetTopDoctor: handleGetTopDoctor,
   handleGetDoctorSelect: handleGetDoctorSelect,
