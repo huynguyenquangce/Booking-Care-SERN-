@@ -16,11 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       descriptionHTML: DataTypes.TEXT,
       descriptionContent: DataTypes.TEXT,
       image: DataTypes.BLOB("long"),
-      name: DataTypes.STRING,
+      nameVi: DataTypes.STRING,
+      nameEn: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "Speciality",
+      freezeTableName: true,
     }
   );
   return Speciality;

@@ -285,7 +285,6 @@ let getDoctorScheduleService = (inputData) => {
         raw: true,
         nest: true,
       });
-      console.log(respone);
       resolve({
         errCode: 0,
         errMessage: "OK",

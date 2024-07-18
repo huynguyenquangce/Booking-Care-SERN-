@@ -34,7 +34,6 @@ let handleGetAllUsers = async (req, res) => {
   return res.status(200).json({
     errCode: 0,
     errMessage: "OK",
-    // return one or all users
     user: users,
   });
 };
