@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Doctor.scss";
 import Slider from "react-slick";
-import image from "../../../assets/images/doctor/bs-nguyen-ngoc-thanh.jpg";
 import { LANGUAGE } from "../../../utils/constant";
 import * as actions from "../../../store/actions";
 import { FormattedMessage } from "react-intl";
@@ -25,14 +23,12 @@ class Doctor extends Component {
   }
 
   handleViewDetailsDoctor = (data) => {
-    console.log("View", data);
-    this.props.history.push(`/detail-doctor/id=${data.id}`);
+    this.props.history.push(`/detail-doctor/${data.id}`);
   };
   async componentDidMount() {
     this.props.getTopDoctor(10);
   }
   render() {
-    console.log("check props doctor: ", this.props.doctorRedux);
     let language = this.props.language;
     let doctor = this.state.arrDoctor;
     return (

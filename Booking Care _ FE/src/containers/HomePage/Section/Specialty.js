@@ -6,13 +6,31 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import image from "../../../assets/images/specialty/xuong-khop.png";
 import { changeLanguageApp } from "../../../store/actions/appActions";
-
+import { getSpecialty } from "../../../services/userService";
+import { withRouter } from "react-router";
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      specialtyData: [],
+    };
+  }
+  async componentDidMount() {
+    let dataSpecialty = await getSpecialty("ALL");
+
+    this.setState({
+      specialtyData: dataSpecialty.specialtyData,
+    });
+  }
   changeLanguage = (language) => {
     //fire redux actions
     this.props.changeLanguageAppRedux(language);
   };
+  handleViewDetailsSpecialty = (item) => {
+    this.props.history.push(`/detail-specialty/id=${item.id}`);
+  };
   render() {
+    let { specialtyData } = this.state;
     return (
       <div className="specialty-container section-container">
         <div className="section-content d-flex flex-column">
@@ -26,30 +44,22 @@ class Specialty extends Component {
           </div>
           <div className="section-body mt-5">
             <Slider {...this.props.settings}>
-              <div className="img-customize">
-                <img src={image}></img>
-                <div>Chuyên nhóm cơ</div>
-              </div>
-              <div className="img-customize">
-                <img src={image}></img>
-                <div>Chuyên nhóm cơ</div>
-              </div>
-              <div className="img-customize">
-                <img src={image}></img>
-                <div>Chuyên nhóm cơ</div>
-              </div>
-              <div className="img-customize">
-                <img src={image}></img>
-                <div>Chuyên nhóm cơ</div>
-              </div>
-              <div className="img-customize">
-                <img src={image}></img>
-                <div>Chuyên nhóm cơ</div>
-              </div>
-              <div className="img-customize">
-                <img src={image}></img>
-                <div>Chuyên nhóm cơ</div>
-              </div>
+              {specialtyData &&
+                specialtyData.length > 0 &&
+                specialtyData.map((item, index) => {
+                  return (
+                    <div
+                      className="img-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailsSpecialty(item)}
+                    >
+                      <div className="item-specialty">
+                        <img src={item.image}></img>
+                        <div className="mt-4 text-center h5">{item.nameVi}</div>
+                      </div>
+                    </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>
@@ -71,4 +81,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Specialty)
+);

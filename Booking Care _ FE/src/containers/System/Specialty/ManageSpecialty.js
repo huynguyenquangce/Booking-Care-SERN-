@@ -5,6 +5,8 @@ import "./ManageSpecialty.scss";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
+import { createSpecialty } from "../../../services/userService";
+import { toast } from "react-toastify";
 const mdParser = new MarkdownIt();
 class ManageSpecialty extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class ManageSpecialty extends Component {
       contentHTML: "",
       contentMarkdown: "",
     };
+    this.fileInputRef = React.createRef(); // Create a ref for the file input
   }
   handleEditorChange = ({ html, text }) => {
     this.setState({
@@ -22,8 +25,28 @@ class ManageSpecialty extends Component {
       contentHTML: html,
     });
   };
-  saveSpecialty = () => {
+  saveSpecialty = async () => {
     console.log("check state", this.state);
+    let res = await createSpecialty({
+      name: this.state.name_specialty,
+      image: this.state.urlBase64,
+      contentMarkDown: this.state.contentMarkdown,
+      contentHTML: this.state.contentHTML,
+    });
+    if (res && res.errCode === 0) {
+      this.setState({
+        name_specialty: "",
+        urlBase64: "",
+        contentHTML: "",
+        contentMarkdown: "",
+      });
+      if (this.fileInputRef.current) {
+        this.fileInputRef.current.value = null;
+      }
+      toast.success("Success creating specialty");
+    } else {
+      toast.error("Falied creating specialty");
+    }
   };
   handleOnChangeInput = (event) => {
     this.setState({
@@ -59,6 +82,7 @@ class ManageSpecialty extends Component {
           <div className="specialty-image col-3">
             <label className="text-secondary h4">Chọn hình ảnh</label>
             <input
+              ref={this.fileInputRef} // Attach ref to the file input
               class="form-control"
               type="file"
               onChange={(event) => this.handleOnChangeImage(event)}

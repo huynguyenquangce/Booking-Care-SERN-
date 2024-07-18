@@ -11,7 +11,7 @@ import {
 } from "../hoc/authentication";
 
 import { path } from "../utils";
-
+import DetailsSpecialty from "./HomePage/Patient/Specialty/DetailsSpecialty.js";
 import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import System from "../routes/System";
@@ -62,6 +62,10 @@ class App extends Component {
                     component={userIsAuthenticated(System)}
                   />
                   <Route path={path.HOMEPAGE} component={HomePage} />
+                  <Route
+                    path={path.DETAIL_SPECIALTY}
+                    component={DetailsSpecialty}
+                  />
                   <Route path={path.DETAIL_DOCTOR} component={DetailsDoctor} />
                   <Route
                     path={path.VERIFY_EMAIL}

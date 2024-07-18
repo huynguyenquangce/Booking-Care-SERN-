@@ -1,0 +1,22 @@
+.specialty-container {
+    .section-content {
+        .section-header {
+        }
+        .section-body {
+            .img-customize {
+                .item-specialty {
+                    border-radius: 16px;
+                    cursor: pointer;
+                    border: 1px solid gainsboro;
+                    padding: 20px 20px;
+                    width: 350px !important;
+                    height: 295px !important;
+                    img {
+                        width: 100%;
+                        height: 80%;
+                    }
+                }
+            }
+        }
+    }
+}

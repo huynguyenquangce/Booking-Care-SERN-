@@ -1,0 +1,17 @@
+.specialty-container {
+    .specialty-description {
+        p {
+            cursor: pointer;
+        }
+        .specialty-description-content {
+            display: -webkit-box;
+            -webkit-line-clamp: 100; /* Số dòng muốn giới hạn */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+}
+
+.show-full-description {
+    -webkit-line-clamp: unset;
+}
