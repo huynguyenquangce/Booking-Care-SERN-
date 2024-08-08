@@ -9,6 +9,7 @@ let buildEmailUrl = (InputDoctorId, inputToken) => {
   return url;
 };
 let handleBookingPatientService = (inputData) => {
+  console.log(inputData);
   return new Promise(async (resolve, reject) => {
     try {
       if (

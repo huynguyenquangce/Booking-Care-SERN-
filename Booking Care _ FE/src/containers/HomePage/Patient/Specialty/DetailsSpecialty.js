@@ -6,7 +6,9 @@ import { withRouter } from "react-router-dom";
 import { LANGUAGE } from "../../../../utils";
 import HomeHeader from "../../HomeHeader";
 import { getSpecialty } from "../../../../services/userService";
-
+import * as actions from "../../../../store/actions";
+import DoctorSchedule from "../Doctor/DoctorSchedule";
+import DoctorExtraInfo from "../Doctor/DoctorExtraInfo";
 class DetailsSpecialty extends Component {
   constructor(props) {
     super(props);
@@ -18,16 +20,17 @@ class DetailsSpecialty extends Component {
       specialtyData: {},
       showFullDescription: false,
       initialLines: 12,
+      idDoctor: 33,
+      isOpenModalFromExtraInfo: false,
     };
   }
 
   async componentDidMount() {
-    console.log("hello from detail");
+    await this.props.fetchDoctorInfo(33);
     let result = await getSpecialty(this.state.idFromURL);
     this.setState({
       specialtyData: result.specialtyData,
     });
-    console.log("check 17", this.state.specialtyData);
   }
 
   toggleDescription = () => {
@@ -35,11 +38,16 @@ class DetailsSpecialty extends Component {
       showFullDescription: !prevState.showFullDescription,
     }));
   };
-
   render() {
-    let { specialtyData, showFullDescription, initialLines } = this.state;
-    let descriptionHTML = specialtyData.descriptionHTML || "";
+    let info = this.props.doctorInfoRedux;
 
+    let {
+      specialtyData,
+      showFullDescription,
+      initialLines,
+      isOpenModalFromExtraInfo,
+    } = this.state;
+    let descriptionHTML = specialtyData.descriptionHTML || "";
     let displayedContent;
     if (!showFullDescription && descriptionHTML) {
       let lines = descriptionHTML.split("\n");
@@ -48,6 +56,14 @@ class DetailsSpecialty extends Component {
     } else {
       displayedContent = descriptionHTML;
     }
+    let viTitle =
+      info && info.positionData && info.positionData.valueVi
+        ? info.positionData.valueVi + " " + info.lastName + " " + info.firstName
+        : "";
+    let enTitle =
+      info && info.positionData && info.positionData.valueEn
+        ? info.positionData.valueEn + " " + info.firstName + " " + info.lastName
+        : "";
 
     return (
       <>
@@ -64,6 +80,38 @@ class DetailsSpecialty extends Component {
               </p>
             )}
           </div>
+          <div className="doctor-list">
+            <div className="mt-3">Select Position</div>
+            <div className="doctor-component padding-bottom-modal container mt-3 py-4 d-flex justify-content-center align-items-center">
+              <div className="row left-content col-6 d-flex justify-content-center align-items-center">
+                {" "}
+                <div className="col-1"></div>
+                <div className="col-2 img-doctor-spec d-flex justify-content-center align-items-center">
+                  <img src={info && info.image ? info.image : ""}></img>
+                </div>
+                <div className="col-9 content-doctor">
+                  <div className="content-doctor-title h4 fw-bold mt-2">
+                    {this.props.language === LANGUAGE.VI ? viTitle : enTitle}
+                  </div>
+                  <div className="content-doctor-subtitle">
+                    {info && info.MarkDown && info.MarkDown.description
+                      ? info.MarkDown.description
+                      : ""}
+                  </div>
+                </div>
+              </div>
+              <div className="right-content col-6 ms-4">
+                <div className="dt-schedule">
+                  <DoctorSchedule id={this.state.idDoctor}></DoctorSchedule>
+                </div>
+                <div className="dt-extra mt-5">
+                  <DoctorExtraInfo
+                    inputId={this.state.idDoctor}
+                  ></DoctorExtraInfo>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </>
     );
@@ -73,11 +121,14 @@ class DetailsSpecialty extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    doctorInfoRedux: state.admin.doctorInfo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchDoctorInfo: (inputId) => dispatch(actions.getDoctorInfoStart(inputId)),
+  };
 };
 
 export default withRouter(

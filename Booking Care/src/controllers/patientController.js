@@ -1,6 +1,7 @@
 import db from "../models";
 import patientService from "../services/patientServices";
 let handleBookingPatient = async (req, res) => {
+  console.log("check body", req.body);
   if (req && req.body) {
     let booking = await patientService.handleBookingPatientService(req.body);
     return res.status(200).json({

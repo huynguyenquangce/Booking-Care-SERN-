@@ -28,6 +28,7 @@ class DoctorExtraInfo extends Component {
       isOpenMore: !this.state.isOpenMore,
     });
   };
+
   componentDidMount() {
     this.props.fetchDoctorInfo(this.props.inputId);
   }

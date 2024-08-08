@@ -14,7 +14,7 @@ const generateDateOptions = () => {
   const today = moment();
   const options = [];
 
-  // Create Select with next 4 day with format Day - DD/MM ( Wednesday - 07/08 )
+  // Create Select with next 7 day with format Day - DD/MM ( Wednesday - 07/08 )
   for (let i = 0; i < 7; i++) {
     let date = today.clone().add(i, "days");
     let label = `${date.format("dddd")} - ${date.format("DD/MM")}`;
@@ -25,13 +25,10 @@ const generateDateOptions = () => {
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
-    const { location } = this.props;
-    const match = location.pathname.match(/id=(\d+)/);
-    const id = match ? match[1] : null;
     this.state = {
       selectOption: {},
       options: generateDateOptions(),
-      idFromURL: id,
+      idFromURL: "",
       isModalOpen: false,
       timeToSend: {},
     };
@@ -43,7 +40,11 @@ class DoctorSchedule extends Component {
     });
     console.log("check selected option", this.state.selectOption);
   };
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({
+      idFromURL: this.props.id,
+    });
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.selectOption !== this.state.selectOption) {
@@ -92,7 +93,7 @@ class DoctorSchedule extends Component {
             doctorId={this.state.idFromURL}
             timeData={this.state.timeToSend}
           ></DoctorModal>
-          <div className="schedule-container ms-5">
+          <div className="schedule-container ms-3">
             <div className="schedule-select col-4">
               <Select
                 value={this.state.selectedOption}

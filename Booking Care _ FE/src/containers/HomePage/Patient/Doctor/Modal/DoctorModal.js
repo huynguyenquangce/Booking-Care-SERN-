@@ -29,9 +29,9 @@ class DoctorModal extends Component {
       [id]: event.target.value,
     });
   };
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchGenderRedux();
-    this.setState({
+    await this.setState({
       idFromParent: this.props.doctorId,
     });
     this.props.fetchShortDoctorInfo(this.props.doctorId);
@@ -63,12 +63,6 @@ class DoctorModal extends Component {
     this.props.toggleModalFromParent();
   };
   handleSaveBooking = async () => {
-    // let doctorName =
-    //   this.state.infoFromModal && this.state.infoFromModal.lastName
-    //     ? this.state.infoFromModal.lastName +
-    //       " " +
-    //       this.state.infoFromModal.firstName
-    //     : "";
     let doctorName = "";
     if (
       this.state.infoFromModal &&
@@ -87,10 +81,9 @@ class DoctorModal extends Component {
           this.state.infoFromModal.lastName;
       }
     }
-    console.log("check doctor ", doctorName);
     this.props.toggleModalFromParent();
     let res = await postBookingPatient({
-      doctorId: this.state.idFromParent,
+      doctorId: this.props.doctorId,
       firstName: this.state.name_state,
       email: this.state.email_state,
       phoneNumber: this.state.phone_state,
@@ -118,7 +111,6 @@ class DoctorModal extends Component {
       });
     } else {
       toast.error("Error booking");
-      console.log("chek code", res.errCode);
     }
   };
   render() {
@@ -146,7 +138,7 @@ class DoctorModal extends Component {
           <div className="modal-custom-schedule-body">
             <div className="doctor-section">
               <ProfileDoctor
-                doctorId={this.state.idFromParent}
+                doctorId={this.props.doctorId}
                 timeData={timeObj}
               ></ProfileDoctor>
             </div>

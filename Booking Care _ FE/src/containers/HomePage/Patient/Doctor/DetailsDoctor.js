@@ -54,7 +54,7 @@ class DetailsDoctor extends Component {
           </div>
           <div className="schedule-doctor mt-5 row">
             <div className="col-6 schedule-doctor-left">
-              <DoctorSchedule></DoctorSchedule>
+              <DoctorSchedule id={this.state.idFromURL}></DoctorSchedule>
             </div>
             <div className="col-4 schedule-doctor-right">
               <DoctorExtraInfo inputId={this.state.idFromURL}></DoctorExtraInfo>

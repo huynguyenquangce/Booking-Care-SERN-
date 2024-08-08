@@ -35,11 +35,6 @@ class ProfileDoctor extends Component {
         infoFromModal: this.props.infoDoctorRedux,
       });
     }
-    // if (prevProps.timeData !== this.props.timeData) {
-    //   this.setState({
-    //     dateInfo: this.props.timeData,
-    //   });
-    // }
   }
   render() {
     let getTimeInfo = this.props.timeData;

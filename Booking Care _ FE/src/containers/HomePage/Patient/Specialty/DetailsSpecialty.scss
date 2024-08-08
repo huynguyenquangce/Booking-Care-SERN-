@@ -10,6 +10,31 @@
             overflow: hidden;
         }
     }
+    .doctor-list {
+        background-color: rgba(238, 238, 238, 1);
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .doctor-component {
+            border: 1px solid gainsboro;
+            background-color: white !important;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+            .left-content {
+                border-right: 1px solid gainsboro !important;
+                .img-doctor-spec {
+                    img {
+                        width: 1000px !important;
+                        height: 100px !important;
+                        border-radius: 50% !important;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .show-full-description {

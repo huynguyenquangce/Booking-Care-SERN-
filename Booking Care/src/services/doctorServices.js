@@ -154,7 +154,7 @@ let getDoctorInfoService = (inputId) => {
       } else {
         let doctorInfo = await db.Users.findOne({
           where: { id: inputId },
-          attributes: { exclude: ["password"] },
+          attributes: { exclude: ["password", "phoneNumber"] },
           include: [
             {
               model: db.Allcode,

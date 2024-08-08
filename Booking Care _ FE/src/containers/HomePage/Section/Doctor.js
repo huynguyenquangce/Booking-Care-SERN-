@@ -23,7 +23,7 @@ class Doctor extends Component {
   }
 
   handleViewDetailsDoctor = (data) => {
-    this.props.history.push(`/detail-doctor/${data.id}`);
+    this.props.history.push(`/detail-doctor/id=${data.id}`);
   };
   async componentDidMount() {
     this.props.getTopDoctor(10);

@@ -18,7 +18,7 @@
       "placeholder-select-date":"Select schedule",
       "choose": "Select",
       "book-free": "and booking (Booking fee 0đ)",
-      "extra-doctor-title-address":"Địa chỉ khám bệnh",
+      "extra-doctor-title-address":"Hospital Address",
 
       "modal": {
         "title": "Appointment Booking Information",

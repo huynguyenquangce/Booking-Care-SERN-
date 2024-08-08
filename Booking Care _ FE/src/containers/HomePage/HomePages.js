@@ -52,7 +52,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Function to simulate lazy loading with delay
-function lazyLoadComponent(importFunc, delay = 1000) {
+function lazyLoadComponent(importFunc, delay = 200) {
   return class LazyComponent extends Component {
     constructor(props) {
       super(props);

@@ -4,10 +4,10 @@ export const path = {
   LOG_OUT: "/logout",
   SYSTEM: "/system",
   HOMEPAGE: "/home",
-  DETAIL_DOCTOR: "/detail-doctor/:id",
+  DETAIL_DOCTOR: "/detail-doctor/id=:id",
   DOCTOR: "/doctor",
   VERIFY_EMAIL: "/verify-email",
-  DETAIL_SPECIALTY: "/detail-specialty/:id",
+  DETAIL_SPECIALTY: "/detail-specialty/id=:id",
 };
 
 export const LANGUAGE = {
